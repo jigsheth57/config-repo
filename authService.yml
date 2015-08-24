@@ -48,10 +48,10 @@ eureka:
 #eureka.instance.healthCheckUrlPath = ${management.context-path}/health
 
 sfdc:
-  client_id: 3MVG9A2kN3Bn17hv8siDyJtftcr88aXG3TpBJIqO8QZac_dpXPEoQy08vgi651aB8y6QdfgCkW0HsDIyQeH1V
-  client_key: 4631320832041516337
-  uid: jigsheth@sfdc.com
-  pwd: Pivotal1234mpY9LIqi4zImvqRZI8zYP2p3
+  client_id: 3MVG9KI2HHAq33RxJxaCsN55D.BA5P0vguP.n.R0EHCM89qBG.egt23vL387Y6A_k4mMqLybs19pYV84c2KCC
+  client_key: 498464523592123478
+  uid: sadasivank@hotmail.com
+  pwd: Puchku089OomiU3KMsqxarwgeMIHbNi8Py
 
 ---
 spring:
