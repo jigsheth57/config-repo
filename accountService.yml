@@ -10,32 +10,18 @@ management:
   context-path: /manage
   security:
     enabled: false
-
-#endpoints.env.id=env
-#endpoints.env.sensitive=true
-#endpoints.env.enabled=true
 endpoints:
   env:
     keys-to-sanitize: pwd,uid,password,secret,key,client_id,client_key # suffix or regex
-#endpoints.health.id=health
-#endpoints.health.sensitive=true
-#endpoints.health.enabled=true
-#endpoints.health.mapping.*= # mapping of health statuses to HttpStatus codes
-#endpoints.health.time-to-live=1000
-#endpoints.info.id=info
-#endpoints.info.sensitive=false
-#endpoints.info.enabled=true
-
 logging:
   level:
-    io.pivotal.sfdc: DEBUG
-#eureka.client.serviceUrl.defaultZone = http://${vcap.services.eureka-service.credentials.uri:localhost:8761}/eureka/
-#eureka.client.registerWithEureka = true
-#eureka.client.fetchRegistry = true
-#eureka.client.registryFetchIntervalSeconds = 10
-#eureka.instance.leaseRenewalIntervalInSeconds = 30
+    io.pivotal.sfdc: INFO
 eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVER_URL:http://localhost:8761}/eureka/
   instance:
+#    preferIpAddress: true
     statusPageUrlPath: ${management.context-path}/health
     healthCheckUrlPath: ${management.context-path}/health
     hostname: ${vcap.application.uris[0]:localhost}
@@ -45,6 +31,8 @@ eureka:
       instanceId: ${vcap.application.instance_id:${spring.application.name}:${spring.application.instance_id:${server.port}}}
 
 sfdc:
+  service:
+    unavailable: '{"status":503,"data": "Service currently unavailable."}'
   authservice:
     endpoint: http://authservice
   query:
@@ -52,7 +40,7 @@ sfdc:
     opp_by_accts: select account.id, account.name, account.type, (select opportunity.id, opportunity.name, opportunity.type, opportunity.amount, opportunity.stagename, opportunity.closedate from account.opportunities) from account
 
 test:
-  message: Hello, Mark!
+  message: Hello, Ram!
 ---
 spring:
   profiles: local
@@ -66,8 +54,4 @@ eureka:
   instance:
     securePortEnabled: true
     nonSecurePortEnabled: false
-    #nonSecurePort: 80
     secureVirtualHostName: ${spring.application.name}
-ribbon:
-  IsSecure: true
-
