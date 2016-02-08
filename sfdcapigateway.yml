@@ -57,10 +57,10 @@ eureka:
 
 zuul:
   routes:
-    authservice: /authService/**
-    accountservice: /accountService/**
-    contactservice: /contactService/**
-    opportunityservice: /opportunityService/**
+    authservice: /authservice/**
+    accountservice: /accountservice/**
+    contactservice: /contactservice/**
+    opportunityservice: /opportunityservice/**
 
 sfdc:
   service:
