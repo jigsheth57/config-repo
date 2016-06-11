@@ -53,7 +53,7 @@ spring:
     nonSecurePort: ${server.port}
 eureka:
   instance:
-    hostname: sfdcwebapp
+    preferIpAddress: true
     nonSecurePort: ${server.port}
   client:
     serviceUrl:
