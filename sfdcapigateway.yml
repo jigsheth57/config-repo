@@ -24,18 +24,18 @@ logging:
 info:
   component: SFDC Api Gateway
   build:
-    name: ${project.name:sfdcapigateway}
-    description: ${project.description}
-    version: ${project.version:0.0.1-SNAPSHOT}
-    group: ${project.groupId:io.pivotal.sfdc}
-    artifact: ${project.artifactId:sfdcapigateway}
+    name: ${project.name:"sfdcapigateway"}
+    description: ${project.description:"API Gateway to proxy calls to one or more back end SalesForce.com services"}
+    version: ${project.version:"0.0.1-SNAPSHOT"}
+    group: ${project.groupId:"io.pivotal.sfdc"}
+    artifact: ${project.artifactId:"sfdcapigateway"}
 
 eureka:
   instance:
     statusPageUrlPath: ${management.context-path}/info
     healthCheckUrlPath: ${management.context-path}/health
-    registryFetchIntervalSeconds: 5
-    leaseRenewalIntervalInSeconds: 5
+#    registryFetchIntervalSeconds: 5
+#    leaseRenewalIntervalInSeconds: 5
   client:
     registerWithEureka: true
     fetchRegistry: true
