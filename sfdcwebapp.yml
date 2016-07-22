@@ -24,10 +24,11 @@ logging:
 info:
   component: SFDC Web Application
   app:
-    name: ${project.name:"sfdcwebapp"}
-    version: ${project.version:"0.0.1-SNAPSHOT"}
-    group: ${project.groupId:"io.pivotal.sfdc"}
-    artifact: ${project.artifactId:"sfdcwebapp"}
+    name: ${project.name:sfdcwebapp}
+    description: ${project.description:SFDC Web App}
+    version: ${project.version:0.0.1-SNAPSHOT}
+    group: ${project.groupId:io.pivotal.sfdc}
+    artifact: ${project.artifactId:sfdcwebapp}
 
 eureka:
   instance:
