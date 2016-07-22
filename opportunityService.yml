@@ -24,11 +24,11 @@ logging:
 info:
   component: Opportunity Service
   app:
-    name: ${project.name:"opportunityService"}
-    description: ${project.description:"SFDC Opportunity Service"}
-    version: ${project.version:"0.0.1-SNAPSHOT"}
-    group: ${project.groupId:"io.pivotal.sfdc"}
-    artifact: ${project.artifactId:"opportunityService"}
+    name: ${project.name:opportunityService}
+    description: ${project.description:SFDC Opportunity Service}
+    version: ${project.version:0.0.1-SNAPSHOT}
+    group: ${project.groupId:io.pivotal.sfdc}
+    artifact: ${project.artifactId:opportunityService}
 
 eureka:
   instance:
