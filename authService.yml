@@ -24,11 +24,11 @@ logging:
 info:
   component: Auth Service
   build:
-    name: ${project.name:"authService"}
-    description: ${project.description:"oauth2 service to login to SFDC"}
-    version: ${project.version:"0.0.1-SNAPSHOT"}
-    group: ${project.groupId:"io.pivotal.sfdc"}
-    artifact: ${project.artifactId:"authService"}
+    name: ${project.name:authService}
+    description: ${project.description:oauth2 service to login to SFDC}
+    version: ${project.version:0.0.1-SNAPSHOT}
+    group: ${project.groupId:io.pivotal.sfdc}
+    artifact: ${project.artifactId:authService}
 
 eureka:
   instance:
