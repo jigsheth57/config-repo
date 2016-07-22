@@ -24,19 +24,19 @@ logging:
 info:
   component: Contact Service
   app:
-    name: ${project.name:contactService}
-    description: ${project.description}
-    version: ${project.version}
-    group: ${project.groupId}
-    artifact: ${project.artifactId}
+    name: ${project.name:"contactService"}
+    description: ${project.description:"SFDC Contact Service"}
+    version: ${project.version:"0.0.1-SNAPSHOT"}
+    group: ${project.groupId:"io.pivotal.sfdc"}
+    artifact: ${project.artifactId:"contactService"}
 
 eureka:
   instance:
     #preferIpAddress: false
     statusPageUrlPath: ${management.context-path}/info
     healthCheckUrlPath: ${management.context-path}/health
-    registryFetchIntervalSeconds: 5
-    leaseRenewalIntervalInSeconds: 5
+#    registryFetchIntervalSeconds: 5
+#    leaseRenewalIntervalInSeconds: 5
   client:
     registerWithEureka: true
     fetchRegistry: true
