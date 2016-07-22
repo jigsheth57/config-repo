@@ -44,7 +44,7 @@ sfdc:
   service:
     unavailable: '{"status":503,"data": "Service currently unavailable."}'
   authservice:
-    endpoint: http://authservice
+    endpoint: https://authservice
 
 ---
 spring:
@@ -62,6 +62,9 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://discovery:8761/eureka/
+sfdc:
+  authservice:
+    endpoint: http://authservice
 
 ---
 spring:
