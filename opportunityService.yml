@@ -34,8 +34,8 @@ eureka:
   instance:
     statusPageUrlPath: ${management.context-path}/info
     healthCheckUrlPath: ${management.context-path}/health
-    registryFetchIntervalSeconds: 5
-    leaseRenewalIntervalInSeconds: 5
+#    registryFetchIntervalSeconds: 5
+#    leaseRenewalIntervalInSeconds: 5
   client:
     registerWithEureka: true
     fetchRegistry: true
