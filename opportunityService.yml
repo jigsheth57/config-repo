@@ -73,7 +73,6 @@ spring:
     services:
       registrationMethod: route
 eureka:
-  instance:
     securePortEnabled: true
     nonSecurePortEnabled: false
     secureVirtualHostName: ${spring.application.name}
