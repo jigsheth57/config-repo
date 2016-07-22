@@ -45,7 +45,7 @@ sfdc:
   service:
     unavailable: '{"status":503,"data": "Service currently unavailable."}'
   authservice:
-    endpoint: http://authservice
+    endpoint: https://authservice
   query:
     accounts: select account.id, account.name, account.type, (select contact.id, contact.lastname from account.contacts) from account
     opp_by_accts: select account.id, account.name, account.type, (select opportunity.id, opportunity.name, opportunity.type, opportunity.amount, opportunity.stagename, opportunity.closedate from account.opportunities) from account
@@ -70,6 +70,9 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://discovery:8761/eureka/
+sfdc:
+  authservice:
+    endpoint: http://authservice
 
 ---
 spring:
