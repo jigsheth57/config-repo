@@ -24,18 +24,18 @@ logging:
 info:
   component: SFDC Web Application
   app:
-    name: ${project.name:sfdcwebapp}
-    version: ${project.version:0.0.1-SNAPSHOT}
-    group: ${project.groupId:io.pivotal.sfdc}
-    artifact: ${project.artifactId:sfdcwebapp}
+    name: ${project.name:"sfdcwebapp"}
+    version: ${project.version:"0.0.1-SNAPSHOT"}
+    group: ${project.groupId:"io.pivotal.sfdc"}
+    artifact: ${project.artifactId:"sfdcwebapp"}
 
 eureka:
   instance:
     #preferIpAddress: false
     statusPageUrlPath: ${management.context-path}/info
     healthCheckUrlPath: ${management.context-path}/health
-    registryFetchIntervalSeconds: 5
-    leaseRenewalIntervalInSeconds: 5
+#    registryFetchIntervalSeconds: 5
+#    leaseRenewalIntervalInSeconds: 5
   client:
     registerWithEureka: true
     fetchRegistry: true
