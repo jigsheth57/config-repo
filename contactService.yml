@@ -24,11 +24,11 @@ logging:
 info:
   component: Contact Service
   app:
-    name: ${project.name:"contactService"}
-    description: ${project.description:"SFDC Contact Service"}
-    version: ${project.version:"0.0.1-SNAPSHOT"}
-    group: ${project.groupId:"io.pivotal.sfdc"}
-    artifact: ${project.artifactId:"contactService"}
+    name: ${project.name:contactService}
+    description: ${project.description:SFDC Contact Service}
+    version: ${project.version:0.0.1-SNAPSHOT}
+    group: ${project.groupId:io.pivotal.sfdc}
+    artifact: ${project.artifactId:contactService}
 
 eureka:
   instance:
