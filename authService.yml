@@ -63,15 +63,20 @@ spring:
   cloud:
     services:
       registrationMethod: route
-eureka:
-  instance:
-    statusPageUrlPath: ${management.context-path}/info
-    healthCheckUrlPath: ${management.context-path}/health
+producer:
+  ribbon:
+    ServerListRefreshInterval: 5000
+ribbon:
+  IsSecure: false
+#eureka:
+#  instance:
+#    statusPageUrlPath: ${management.context-path}/info
+#    healthCheckUrlPath: ${management.context-path}/health
 #    securePortEnabled: true
 #    nonSecurePortEnabled: false
 #    secureVirtualHostName: ${spring.application.name}
-    metadataMap:
-      instanceId: ${vcap.application.instance_id:${spring.application.name}:${spring.application.instance_id:${server.port}}}
+#    metadataMap:
+#      instanceId: ${vcap.application.instance_id:${spring.application.name}:${spring.application.instance_id:${server.port}}}
 #  client:
 #    serviceUrl:
 #      defaultZone: ${vcap.services.p-service-registry.credentials.uri}/eureka/
