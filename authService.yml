@@ -37,7 +37,7 @@ sfdc:
   pwd: '{cipher}79fd64cf398391f214f12554d2da41f9ffb0c74dbac514d850e763dbcbb1e0f7286ad3cdd7205e3425c2d03350d6669a537481a12c0e3930da28b45ac852550d'
 
 test:
-  welcome: Hi, Jig
+  message: Hi, Jig
 ---
 spring:
   profiles: local
