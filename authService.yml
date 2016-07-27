@@ -70,9 +70,9 @@ ribbon:
   IsSecure: true
 eureka:
   instance:
-    statusPageUrl: ${management.context-path}/info
-    healthCheckUrl: ${management.context-path}/health
-    homePageUrl: /
+    statusPageUrlPath: ${management.context-path}/info
+    healthCheckUrlPath: ${management.context-path}/health
+    homePageUrlPath: /
 #    securePortEnabled: true
 #    nonSecurePortEnabled: false
 #    secureVirtualHostName: ${spring.application.name}
