@@ -30,17 +30,6 @@ info:
     group: ${project.groupId:io.pivotal.sfdc}
     artifact: ${project.artifactId:authService}
 
-eureka:
-  instance:
-    #preferIpAddress: false
-    statusPageUrlPath: ${management.context-path}/info
-    healthCheckUrlPath: ${management.context-path}/health
-#    registryFetchIntervalSeconds: 5
-#    leaseRenewalIntervalInSeconds: 5
-  client:
-    registerWithEureka: true
-    fetchRegistry: true
-
 sfdc:
   client_id: '{cipher}bf926ee3ed7e60ce8e0920ae8b45011b91eb2737d3c2fe95796ab2fa2afd7b69536a903ddb07ec54b78a5bdf6bc85dbaf8604639926bdbf32e5c755bff18b1c1eabe9ec4b8de5d3463a4384c666a7ce8f212bcf25fe535e40c9e6063044e751c35935e4cf129da1b713c5814ae3e9215'
   client_key: '{cipher}dcdeca12ec0600f7638e3d4b8ad5f70a0a890425e21c2cb6d43fc40f8ae67fe52316d991c71fcf87d77aa698e5d93cee'
@@ -60,7 +49,11 @@ eureka:
     preferIpAddress: true
     hostname: authservice
     nonSecurePort: ${server.port}
+    statusPageUrlPath: ${management.context-path}/info
+    healthCheckUrlPath: ${management.context-path}/health
   client:
+    registerWithEureka: true
+    fetchRegistry: true
     serviceUrl:
       defaultZone: http://discovery:8761/eureka/
 
@@ -72,14 +65,16 @@ spring:
       registrationMethod: route
 eureka:
   instance:
+    statusPageUrlPath: ${management.context-path}/info
+    healthCheckUrlPath: ${management.context-path}/health
 #    securePortEnabled: true
 #    nonSecurePortEnabled: false
 #    secureVirtualHostName: ${spring.application.name}
     metadataMap:
       instanceId: ${vcap.application.instance_id:${spring.application.name}:${spring.application.instance_id:${server.port}}}
-  client:
-    serviceUrl:
-      defaultZone: ${vcap.services.p-service-registry.credentials.uri}/eureka/
+#  client:
+#    serviceUrl:
+#      defaultZone: ${vcap.services.p-service-registry.credentials.uri}/eureka/
 sfdc:
   client_id: 3MVG9A2kN3Bn17hv8siDyJtftcr88aXG3TpBJIqO8QZac_dpXPEoQy08vgi651aB8y6QdfgCkW0HsDIyQeH1V
   client_key: 4631320832041516337
