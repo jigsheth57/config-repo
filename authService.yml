@@ -36,8 +36,6 @@ sfdc:
   uid: '{cipher}4064c897a0c62edf29d91163469ea7fcb2a1ad318b8f91632a16028830869cda3dae8bd5fdb17763b4c6056b6c4e96cf'
   pwd: '{cipher}79fd64cf398391f214f12554d2da41f9ffb0c74dbac514d850e763dbcbb1e0f7286ad3cdd7205e3425c2d03350d6669a537481a12c0e3930da28b45ac852550d'
 
-test:
-  message: Hi, Jig
 ---
 spring:
   profiles: local
