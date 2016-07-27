@@ -67,11 +67,12 @@ producer:
   ribbon:
     ServerListRefreshInterval: 5000
 ribbon:
-  IsSecure: false
-#eureka:
-#  instance:
-#    statusPageUrlPath: ${management.context-path}/info
-#    healthCheckUrlPath: ${management.context-path}/health
+  IsSecure: true
+eureka:
+  instance:
+    statusPageUrl: ${management.context-path}/info
+    healthCheckUrl: ${management.context-path}/health
+    homePageUrl: /
 #    securePortEnabled: true
 #    nonSecurePortEnabled: false
 #    secureVirtualHostName: ${spring.application.name}
