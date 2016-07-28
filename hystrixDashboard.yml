@@ -55,6 +55,7 @@ eureka:
 spring:
   profiles: local
   instance:
+    preferIpAddress: true
     nonSecurePort: ${server.port}
 eureka:
   instance:
