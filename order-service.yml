@@ -1,0 +1,22 @@
+spring:
+  profiles.active: cloud
+  jpa:
+    hibernate:
+      ddl-auto: update
+server:
+  port: ${PORT:0}
+security:
+  basic:
+    enabled: false
+
+---
+spring:
+  profiles: cloud # For deployment in Cloud Foundry
+  cloud:
+    services:
+      registrationMethod: direct
+producer:
+  ribbon:
+    ServerListRefreshInterval: 5000
+ribbon:
+  IsSecure: true
