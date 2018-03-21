@@ -19,4 +19,4 @@ producer:
   ribbon:
     ServerListRefreshInterval: 5000
 ribbon:
-  IsSecure: false
+  IsSecure: true
