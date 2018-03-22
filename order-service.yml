@@ -20,8 +20,13 @@ spring:
   cloud:
     services:
       registrationMethod: direct
+eureka:
+  instance:
+    securePort: 8443
+    securePortEnabled: true
+
 producer:
   ribbon:
     ServerListRefreshInterval: 5000
 ribbon:
-  IsSecure: false
+  IsSecure: true
