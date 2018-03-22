@@ -20,6 +20,10 @@ spring:
   cloud:
     services:
       registrationMethod: direct
+eureka:
+  instance:
+    securePort: 8443
+    securePortEnabled: true
 
 producer:
   ribbon:
