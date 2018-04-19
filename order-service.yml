@@ -1,5 +1,7 @@
 spring:
   profiles.active: cloud
+  sleuth.sampler.percentage: 1.0
+  zipkin.baseUrl: https://zipkin.cfapps.gcp.pcfapps.org
   jpa:
     hibernate:
       ddl-auto: update
@@ -13,6 +15,11 @@ ssl:
   keystore:
     file: classpath:/server.jks
     pass: ${STORE_PASS:secret}
+
+logging.level:
+  org.springframework:
+    cloud:
+      sleuth: DEBUG
 
 ---
 spring:

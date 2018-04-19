@@ -1,11 +1,16 @@
 spring:
   profiles.active: cloud
+  sleuth.sampler.percentage: 1.0
+  zipkin.baseUrl: https://zipkin.cfapps.gcp.pcfapps.org
 server:
   port: ${PORT:0}
 security:
   basic:
     enabled: false
-
+logging.level:
+  org.springframework:
+    cloud:
+      sleuth: DEBUG
 ---
 spring:
   profiles: cloud # For deployment in Cloud Foundry
