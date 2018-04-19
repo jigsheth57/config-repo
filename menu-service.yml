@@ -1,7 +1,7 @@
 spring:
   profiles.active: cloud
   sleuth.sampler.percentage: 1.0
-  zipkin.baseUrl: https://zipkin.cfapps.gcp.pcfapps.org
+  zipkin.baseUrl: https://zipkin
   jpa:
     hibernate:
       ddl-auto: update
