@@ -1,7 +1,7 @@
 spring:
   profiles.active: cloud
   sleuth.sampler.percentage: 1.0
-  zipkin.baseUrl: https://zipkin
+  zipkin.sender.type: rabbit
 server:
   port: ${PORT:0}
 security:
