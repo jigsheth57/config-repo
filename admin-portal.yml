@@ -11,9 +11,6 @@ logging.level:
   org.springframework:
     cloud:
       sleuth: DEBUG
-management:
-  security:
-    roles: order.admin
 ---
 spring:
   profiles: cloud # For deployment in Cloud Foundry
