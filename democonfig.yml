@@ -8,7 +8,7 @@ security:
   user:
     name: admin
     password: pivotal
-    roles: USER, ADMIN, ACTUATOR
+    roles: USER, ADMIN
 
 welcome:
   msg: 'welcome to my world@!'
