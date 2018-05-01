@@ -11,7 +11,7 @@ security:
     roles: USER, ADMIN, ACTUATOR
 
 welcome:
-  msg: 'welcome to my world@!'
+  msg: 'welcome to HCSC'
 
 ---
 spring:
