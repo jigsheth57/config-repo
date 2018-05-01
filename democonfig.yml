@@ -11,7 +11,7 @@ security:
     roles: USER
 
 welcome:
-  msg: 'welcome to HCSC'
+  msg: 'welcome to my world@!'
 
 
 ---
