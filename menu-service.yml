@@ -21,10 +21,6 @@ logging.level:
     cloud:
       sleuth: DEBUG
 
-management:
-  security:
-    roles: menu.write
-
 ---
 spring:
   profiles: cloud # For deployment in Cloud Foundry

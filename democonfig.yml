@@ -8,14 +8,11 @@ security:
   user:
     name: admin
     password: pivotal
-    roles: USER, ADMIN
+    roles: USER
 
 welcome:
   msg: 'welcome to my world@!'
 
-management:
-  security:
-    roles: ACTUATOR
 
 ---
 spring:
