@@ -13,6 +13,10 @@ security:
 welcome:
   msg: 'welcome to my world@!'
 
+management:
+  security:
+    roles: ACTUATOR
+
 ---
 spring:
   profiles: cloud # For deployment in Cloud Foundry
