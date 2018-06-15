@@ -1,15 +1,8 @@
-spring:
-  profiles.active: cloud
 server:
   port: ${PORT:0}
-security:
-  basic:
-    enabled: false
 
 management:
   context-path: /manage
-  security:
-    enabled: false
 
 endpoints:
   env:
@@ -18,8 +11,8 @@ endpoints:
 logging:
   level:
     com.netflix: INFO
-    org.springframework.cloud: DEBUG
-    io.pivotal.sfdc: DEBUG
+    org.springframework.cloud: INFO
+    io.pivotal.sfdc: INFO
 
 info:
   component: SFDC Web Application
@@ -32,18 +25,12 @@ info:
 
 eureka:
   instance:
-    #preferIpAddress: false
     statusPageUrlPath: ${management.context-path}/info
     healthCheckUrlPath: ${management.context-path}/health
-#    registryFetchIntervalSeconds: 5
-#    leaseRenewalIntervalInSeconds: 5
-#  client:
-#    registerWithEureka: true
-#    fetchRegistry: true
 
 sfdc:
   apigateway:
-    endpoint: https://sfdcapigateway
+    endpoint: http://sfdcapigateway
   service:
     unavailable: '{"status":503,"data": "Service currently unavailable."}'
 
@@ -55,34 +42,37 @@ spring:
 eureka:
   instance:
     preferIpAddress: true
+    hostname: sfdcwebapp
     nonSecurePort: ${server.port}
+    statusPageUrlPath: ${management.context-path}/info
+    healthCheckUrlPath: ${management.context-path}/health
   client:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
-      defaultZone: http://discovery:8761/eureka/
-sfdc:
-  apigateway:
-    endpoint: http://sfdcapigateway
+      defaultZone: http://${EUREKA_HOST:discovery}:8761/eureka/
+# Ribbon Configurations
+producer:
+  ribbon:
+    ServerListRefreshInterval: 5000
+ribbon:
+  IsSecure: false
 
+security:
+  basic:
+    enabled: false
+
+management:
+  security:
+    enabled: false
 ---
 spring:
   profiles: cloud # For deployment in Cloud Foundry
   cloud:
     services:
-      registrationMethod: route
-sfdc:
-  apigateway:
-    endpoint: https://sfdcapigateway
+      registrationMethod: direct
 producer:
   ribbon:
     ServerListRefreshInterval: 5000
 ribbon:
-  IsSecure: true
-#eureka:
-#  instance:
-#    securePortEnabled: true
-#    nonSecurePortEnabled: false
-#    secureVirtualHostName: ${spring.application.name}
-#    metadataMap:
-#      instanceId: ${vcap.application.instance_id:${spring.application.name}:${spring.application.instance_id:${server.port}}}
+  IsSecure: false

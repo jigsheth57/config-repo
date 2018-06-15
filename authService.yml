@@ -1,15 +1,8 @@
-spring:
-  profiles.active: cloud
 server:
   port: ${PORT:0}
-security:
-  basic:
-    enabled: false
 
 management:
   context-path: /manage
-  security:
-    enabled: false
 
 endpoints:
   env:
@@ -19,7 +12,7 @@ logging:
   level:
     com.netflix: INFO
     org.springframework.cloud: INFO
-    io.pivotal.sfdc: DEBUG
+    io.pivotal.sfdc: INFO
 
 info:
   component: Auth Service
@@ -55,32 +48,38 @@ eureka:
     registerWithEureka: true
     fetchRegistry: true
     serviceUrl:
-      defaultZone: http://discovery:8761/eureka/
+      defaultZone: http://${EUREKA_HOST:discovery}:8761/eureka/
+# Ribbon Configurations
+producer:
+  ribbon:
+    ServerListRefreshInterval: 5000
+ribbon:
+  IsSecure: false
+
+security:
+  basic:
+    enabled: false
+
+management:
+  security:
+    enabled: false
 
 ---
 spring:
   profiles: cloud # For deployment in Cloud Foundry
   cloud:
     services:
-      registrationMethod: route
+      registrationMethod: direct
 producer:
   ribbon:
     ServerListRefreshInterval: 5000
 ribbon:
-  IsSecure: true
+  IsSecure: false
 eureka:
   instance:
     statusPageUrlPath: ${management.context-path}/info
     healthCheckUrlPath: ${management.context-path}/health
     homePageUrlPath: /
-#    securePortEnabled: true
-#    nonSecurePortEnabled: false
-#    secureVirtualHostName: ${spring.application.name}
-#    metadataMap:
-#      instanceId: ${vcap.application.instance_id:${spring.application.name}:${spring.application.instance_id:${server.port}}}
-#  client:
-#    serviceUrl:
-#      defaultZone: ${vcap.services.p-service-registry.credentials.uri}/eureka/
 sfdc:
   client_id: 3MVG9A2kN3Bn17hv8siDyJtftcr88aXG3TpBJIqO8QZac_dpXPEoQy08vgi651aB8y6QdfgCkW0HsDIyQeH1V
   client_key: 4631320832041516337
