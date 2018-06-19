@@ -42,8 +42,6 @@ eureka:
     preferIpAddress: true
     hostname: authservice
     nonSecurePort: ${server.port}
-    statusPageUrlPath: ${management.context-path}/info
-    healthCheckUrlPath: ${management.context-path}/health
   client:
     registerWithEureka: true
     fetchRegistry: true
@@ -75,11 +73,7 @@ producer:
     ServerListRefreshInterval: 5000
 ribbon:
   IsSecure: false
-eureka:
-  instance:
-    statusPageUrlPath: ${management.context-path}/info
-    healthCheckUrlPath: ${management.context-path}/health
-    homePageUrlPath: /
+
 sfdc:
   client_id: 3MVG9A2kN3Bn17hv8siDyJtftcr88aXG3TpBJIqO8QZac_dpXPEoQy08vgi651aB8y6QdfgCkW0HsDIyQeH1V
   client_key: 4631320832041516337

@@ -23,12 +23,6 @@ info:
     group: ${project.groupId:io.pivotal.sfdc}
     artifact: ${project.artifactId:contactService}
 
-eureka:
-  instance:
-    statusPageUrlPath: ${management.context-path}/info
-    healthCheckUrlPath: ${management.context-path}/health
-    homePageUrlPath: /
-
 sfdc:
   service:
     unavailable: '{"status":503,"data": "Service currently unavailable."}'

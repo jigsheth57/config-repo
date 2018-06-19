@@ -23,12 +23,6 @@ info:
     group: ${project.groupId:io.pivotal.sfdc}
     artifact: ${project.artifactId:accountService}
 
-eureka:
-  instance:
-    statusPageUrlPath: ${management.context-path}/info
-    healthCheckUrlPath: ${management.context-path}/health
-    homePageUrlPath: /
-
 sfdc:
   service:
     unavailable: '{"status":503,"data": "Service currently unavailable."}'
@@ -55,8 +49,6 @@ eureka:
     preferIpAddress: true
     hostname: accountservice
     nonSecurePort: ${server.port}
-    statusPageUrlPath: ${management.context-path}/info
-    healthCheckUrlPath: ${management.context-path}/health
   client:
     registerWithEureka: true
     fetchRegistry: true

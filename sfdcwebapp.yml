@@ -23,11 +23,6 @@ info:
     group: ${project.groupId:io.pivotal.sfdc}
     artifact: ${project.artifactId:sfdcwebapp}
 
-eureka:
-  instance:
-    statusPageUrlPath: ${management.context-path}/info
-    healthCheckUrlPath: ${management.context-path}/health
-
 sfdc:
   apigateway:
     endpoint: http://sfdcapigateway
@@ -44,8 +39,6 @@ eureka:
     preferIpAddress: true
     hostname: sfdcwebapp
     nonSecurePort: ${server.port}
-    statusPageUrlPath: ${management.context-path}/info
-    healthCheckUrlPath: ${management.context-path}/health
   client:
     registerWithEureka: true
     fetchRegistry: true
