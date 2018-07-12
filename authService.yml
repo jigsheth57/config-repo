@@ -2,7 +2,12 @@ server:
   port: ${PORT:0}
 
 management:
-  context-path: /manage
+  endpoints:
+    web:
+      base-path: /manage
+      exposure:
+        include: *
+
 
 endpoints:
   env:
