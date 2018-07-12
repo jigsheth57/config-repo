@@ -53,13 +53,13 @@ spring:
         predicates:
         - Path=/contactservice/**
         filters:
-        - RewritePath=/(?<path>.*), /$\{path}
+        - RewritePath=/contactservice/(?<path>.*), /$\{path}
       - id: opportunityservice
         uri: lb://opportunityservice
         predicates:
         - Path=/opportunityservice/**
         filters:
-        - RewritePath=/(?<path>.*), /$\{path}
+        - RewritePath=/opportunityservice/(?<path>.*), /$\{path}
 ---
 spring:
   profiles: local
