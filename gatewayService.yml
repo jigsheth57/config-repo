@@ -1,0 +1,112 @@
+server:
+  port: ${PORT:0}
+
+management:
+  context-path: /manage
+
+endpoints:
+  env:
+    keys-to-sanitize: pwd,uid,password,secret,key,client_id,client_key # suffix or regex
+
+logging:
+  level:
+    com.netflix: INFO
+    org.springframework.cloud: INFO
+    io.pivotal.sfdc: INFO
+
+info:
+  component: SFDC Api Gateway
+  build:
+    name: ${project.name:gatewayService}
+    description: ${project.description:API Gateway to proxy calls to one or more back end SalesForce.com services}
+    version: ${project.version:0.0.1-SNAPSHOT}
+    group: ${project.groupId:io.pivotal.sfdc}
+    artifact: ${project.artifactId:gatewayService}
+
+sfdc:
+  service:
+    unavailable: '{"status":503,"data": "Service currently unavailable."}'
+
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+      - id: authservice
+        uri: lb://authservice
+        predicates:
+        - Path=/authservice/**
+        filters:
+        - RewritePath=/(?<path>.*), /$\{path}
+      - id: accountservice
+        uri: lb://accountservice
+        predicates:
+        - Path=/accountservice/**
+        filters:
+        - RewritePath=/(?<path>.*), /$\{path}
+      - id: contactservice
+        uri: lb://contactservice
+        predicates:
+        - Path=/contactservice/**
+        filters:
+        - RewritePath=/(?<path>.*), /$\{path}
+      - id: opportunityservice
+        uri: lb://opportunityservice
+        predicates:
+        - Path=/opportunityservice/**
+        filters:
+        - RewritePath=/(?<path>.*), /$\{path}
+---
+spring:
+  profiles: local
+  instance:
+    nonSecurePort: ${server.port}
+  redis:
+    host: redis
+    port: 6379
+eureka:
+  instance:
+    preferIpAddress: true
+    hostname: gatewayService
+    nonSecurePort: ${server.port}
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://${EUREKA_HOST:discovery}:8761/eureka/
+# Ribbon Configurations
+producer:
+  ribbon:
+    ServerListRefreshInterval: 5000
+ribbon:
+  IsSecure: false
+
+security:
+  basic:
+    enabled: false
+
+management:
+  security:
+    enabled: false
+---
+spring:
+  profiles: cloud # For deployment in Cloud Foundry
+  cloud:
+    services:
+      registrationMethod: direct
+producer:
+  ribbon:
+    ServerListRefreshInterval: 5000
+ribbon:
+  IsSecure: false
+  ConnectTimeout: 3000
+  ReadTimeout: 60000
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
