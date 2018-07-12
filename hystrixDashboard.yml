@@ -19,7 +19,9 @@ info:
     artifact: ${project.artifactId}
 
 management:
-  context-path: /manage
+  endpoints:
+    web:
+      base-path: /manage
 
 logging:
   level:
@@ -55,15 +57,6 @@ producer:
     ServerListRefreshInterval: 5000
 ribbon:
   IsSecure: false
-
-security:
-  basic:
-    enabled: false
-
-management:
-  security:
-    enabled: false
-
 ---
 spring:
   profiles: cloud # For deployment in Cloud Foundry
