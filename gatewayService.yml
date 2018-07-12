@@ -41,13 +41,13 @@ spring:
         predicates:
         - Path=/authservice/**
         filters:
-        - RewritePath=/(?<path>.*), /$\{path}
+        - RewritePath=/authservice/(?<path>.*), /$\{path}
       - id: accountservice
         uri: lb://accountservice
         predicates:
         - Path=/accountservice/**
         filters:
-        - RewritePath=/(?<path>.*), /$\{path}
+        - RewritePath=/accountservice/(?<path>.*), /$\{path}
       - id: contactservice
         uri: lb://contactservice
         predicates:
