@@ -36,6 +36,9 @@ spring:
   profiles: local
   instance:
     nonSecurePort: ${server.port}
+  redis:
+    host: redis
+    port: 6379
 eureka:
   instance:
     preferIpAddress: true
