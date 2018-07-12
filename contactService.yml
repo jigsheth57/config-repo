@@ -44,8 +44,6 @@ eureka:
     preferIpAddress: true
     hostname: contactservice
     nonSecurePort: ${server.port}
-    statusPageUrlPath: ${management.context-path}/info
-    healthCheckUrlPath: ${management.context-path}/health
   client:
     registerWithEureka: true
     fetchRegistry: true
