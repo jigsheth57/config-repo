@@ -1,7 +1,14 @@
 server:
   port: ${PORT:0}
 
+security:
+  basic:
+    enabled: false
+
 management:
+  context-path: /manage
+  security:
+    enabled: false
   endpoints:
     web:
       base-path: /manage
