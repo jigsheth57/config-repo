@@ -8,7 +8,7 @@ management:
       exposure:
         include: "*"
     health:
-      show-details: "ALWAYS"
+      show-details: "when-authorized"
 
 endpoints:
   env:
