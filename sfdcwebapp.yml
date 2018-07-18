@@ -5,8 +5,10 @@ management:
   endpoints:
     web:
       base-path: /manage
+      exposure:
+        include: "*"
     health:
-      show-details: always
+      show-details: "ALWAYS"
 
 endpoints:
   env:
