@@ -48,10 +48,7 @@ spring:
         predicates:
         - Path=/authservice/**
         filters:
-        - name: Hystrix
-          args:
-            name: authservicefallback
-            fallbackUri: forward:/authservicefallback
+        - Hystrix=authservicefallback
         - RewritePath=/authservice/(?<path>.*), /$\{path}
       - id: accountservice
         uri: lb://accountservice
