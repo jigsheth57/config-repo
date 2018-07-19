@@ -48,10 +48,11 @@ spring:
         predicates:
         - Path=/authservice/**
         filters:
+        - RewritePath=/authservice/(?<path>.*), /$\{path}
         - name: Hystrix
           args:
             name: authservicefallback
-            fallbackUri: forward:/authservicefallback
+            fallbackUri: forward:/manage/health
 ---
 spring:
   profiles: local
