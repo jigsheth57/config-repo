@@ -11,7 +11,7 @@ spring:
       roles: USER
 
 welcome:
-  msg: 'welcome to my world@!'
+  msg: 'welcome to my world.'
 
 management:
   cloudfoundry:
