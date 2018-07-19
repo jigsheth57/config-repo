@@ -20,7 +20,11 @@ management:
   endpoints:
     web:
       exposure:
-        include: "*"
+        include: '*'
+  endpoint:
+    health:
+      roles: USER
+      show-details: always
 ---
 spring:
   profiles: cloud # For deployment in Cloud Foundry
