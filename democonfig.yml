@@ -13,7 +13,8 @@ security:
 management:
   cloudfoundry:
     skip-ssl-validation: true
-
+    enabled: true
+    
 welcome:
   msg: 'welcome to Pivotal'
 
