@@ -1,26 +1,26 @@
-spring:
-  profiles.active: cloud
 server:
   port: ${PORT:9000}
-security:
-  basic:
-    enabled: false
-  user:
-    name: admin
-    password: pivotal
-    roles: USER
+
+spring:
+  security:
+    basic:
+      enabled: false
+    user:
+      name: admin
+      password: pivotal
+      roles: USER
+
+welcome:
+  msg: 'welcome to my world@!'
 
 management:
-  security:
-    enabled: false
   cloudfoundry:
     skip-ssl-validation: true
     enabled: true
-
-welcome:
-  msg: 'welcome to Pivotal'
-
-
+  endpoints:
+    web:
+      exposure:
+        include: "*"
 ---
 spring:
   profiles: cloud # For deployment in Cloud Foundry
