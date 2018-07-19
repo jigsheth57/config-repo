@@ -6,16 +6,20 @@ security:
     enabled: false
 
 management:
-  context-path: /manage
-  security:
-    enabled: false
+  cloudfoundry:
+    skip-ssl-validation: true
+    enabled: true
   endpoints:
     web:
       base-path: /manage
-
-endpoints:
-  env:
-    keys-to-sanitize: pwd,uid,password,secret,key,client_id,client_key # suffix or regex
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      roles: USER
+      show-details: always
+    env:
+      keys-to-sanitize:  pwd,uid,password,secret,key,client_id,client_key # suffix or regex
 
 logging:
   level:
