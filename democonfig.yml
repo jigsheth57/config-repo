@@ -1,17 +1,17 @@
 server:
   port: ${PORT:9000}
 
-spring:
-  security:
-    basic:
-      enabled: false
-    user:
-      name: admin
-      password: pivotal
-      roles: USER
+#spring:
+#  security:
+#    basic:
+#      enabled: false
+#    user:
+#      name: admin
+#      password: pivotal
+#      roles: USER
 
 welcome:
-  msg: 'welcome to my world.'
+  msg: 'welcome to my world'
 
 management:
   cloudfoundry:
