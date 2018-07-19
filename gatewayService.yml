@@ -2,13 +2,20 @@ server:
   port: ${PORT:0}
 
 management:
+  cloudfoundry:
+    skip-ssl-validation: true
+    enabled: true
   endpoints:
     web:
       base-path: /manage
-
-endpoints:
-  env:
-    keys-to-sanitize: pwd,uid,password,secret,key,client_id,client_key # suffix or regex
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      roles: USER
+      show-details: always
+    env:
+      keys-to-sanitize:  pwd,uid,password,secret,key,client_id,client_key # suffix or regex
 
 logging:
   level:
@@ -41,6 +48,16 @@ spring:
         predicates:
         - Path=/authservice/**
         filters:
+        - RewritePath=/authservice/(?<path>.*), /$\{path}
+      - id: authservice_hystrix_route
+        uri: lb://authservice
+        predicates:
+        - Path=/authservice/**
+        filters:
+        - name: Hystrix
+          args:
+            name: authservice_fallbackcmd
+            fallbackUri: forward:/authservicefallback
         - RewritePath=/authservice/(?<path>.*), /$\{path}
       - id: accountservice
         uri: lb://accountservice
