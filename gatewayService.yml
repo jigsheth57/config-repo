@@ -52,7 +52,7 @@ spring:
         - name: Hystrix
           args:
             name: authservicefallback
-            fallbackUri: forward:/manage/health
+            fallbackUri: forward:/accountfallback
 ---
 spring:
   profiles: local
