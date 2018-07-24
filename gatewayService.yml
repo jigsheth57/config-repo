@@ -43,10 +43,20 @@ spring:
         locator:
           enabled: true
       routes:
-      - id: accounts
+      - id: contacts_by_accounts
         uri: lb://accountservice
         predicates:
         - Path=/accountservice/accounts/**
+        filters:
+        - RewritePath=/accountservice/(?<path>.*), /$\{path}
+        - name: Hystrix
+          args:
+            name: accountsfallback
+            fallbackUri: forward:/accountsfallback
+      - id: opportunities_by_accounts
+        uri: lb://accountservice
+        predicates:
+        - Path=/accountservice/opp_by_accts/**
         filters:
         - RewritePath=/accountservice/(?<path>.*), /$\{path}
         - name: Hystrix
