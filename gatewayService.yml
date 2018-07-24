@@ -43,7 +43,7 @@ spring:
         locator:
           enabled: true
       routes:
-      - id: accounts
+      - id: accountservice
         uri: lb://accountservice
         predicates:
         - Path=/accountservice/**
