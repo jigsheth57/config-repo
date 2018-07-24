@@ -43,16 +43,16 @@ spring:
         locator:
           enabled: true
       routes:
-      - id: authservice
-        uri: lb://authservice
+      - id: accounts
+        uri: lb://accountservice
         predicates:
-        - Path=/authservice/**
+        - Path=/accountservice/accounts
         filters:
-        - RewritePath=/authservice/(?<path>.*), /$\{path}
+        - RewritePath=/accountservice/(?<path>.*), /$\{path}
         - name: Hystrix
           args:
-            name: authservicefallback
-            fallbackUri: forward:/accountfallback
+            name: accountsfallback
+            fallbackUri: forward:/accountsfallback
 ---
 spring:
   profiles: local
@@ -89,7 +89,7 @@ spring:
   profiles: cloud # For deployment in Cloud Foundry
   cloud:
     services:
-      registrationMethod: direct
+      registrationMethod: route
 producer:
   ribbon:
     ServerListRefreshInterval: 5000
