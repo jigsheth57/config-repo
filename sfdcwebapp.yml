@@ -38,7 +38,8 @@ info:
 
 sfdc:
   apigateway:
-    endpoint: http://sfdcapigateway
+    endpoint: http://gatewayservice
+#    endpoint: http://sfdcapigateway
   service:
     unavailable: '{"status":503,"data": "Service currently unavailable."}'
 
