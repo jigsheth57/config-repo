@@ -44,50 +44,30 @@ spring:
         locator:
           enabled: true
       routes:
-      - id: accounts
+      - id: accountservice
         uri: lb://accountservice
         predicates:
-        - Path=/accountservice/accounts
+        - Path=/accountservice/**
         filters:
         - RewritePath=/accountservice/(?<path>.*), /$\{path}
         - name: Hystrix
           args:
             name: accounts_fallback
             fallbackUri: forward:/servicefallback
-      - id: opp_by_accts
-        uri: lb://accountservice
-        predicates:
-        - Path=/accountservice/opp_by_accts
-        filters:
-        - RewritePath=/accountservice/(?<path>.*), /$\{path}
-        - name: Hystrix
-          args:
-            name: opp_by_accts_fallback
-            fallbackUri: forward:/servicefallback
-      - id: account
-        uri: lb://accountservice
-        predicates:
-        - Path=/accountservice/account/**
-        filters:
-        - RewritePath=/accountservice/(?<path>.*), /$\{path}
-        - name: Hystrix
-          args:
-            name: account_fallback
-            fallbackUri: forward:/servicefallback
-      - id: contact
+      - id: contactservice
         uri: lb://contactservice
         predicates:
-        - Path=/contactservice/contact/**
+        - Path=/contactservice/**
         filters:
         - RewritePath=/contactservice/(?<path>.*), /$\{path}
         - name: Hystrix
           args:
             name: contact_fallback
             fallbackUri: forward:/servicefallback
-      - id: opportunity
+      - id: opportunityservice
         uri: lb://opportunityservice
         predicates:
-        - Path=/opportunityservice/opportunity/**
+        - Path=/opportunityservice/**
         filters:
         - RewritePath=/opportunityservice/(?<path>.*), /$\{path}
         - name: Hystrix
