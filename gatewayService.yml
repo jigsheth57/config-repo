@@ -43,46 +43,47 @@ spring:
         locator:
           enabled: true
       routes:
-      - id: contacts_by_accounts
+      - id: accounts
         uri: lb://accountservice
         predicates:
-        - Path=/accountservice/accounts/**
+        - Path=/accountservice/accounts
+        - Path=/accountservice/opp_by_accts
         filters:
         - RewritePath=/accountservice/(?<path>.*), /$\{path}
         - name: Hystrix
           args:
-            name: contacts_by_accounts_fallback
+            name: accounts_fallback
             fallbackUri: forward:/accountsfallback
-      - id: opportunities_by_accounts
+      - id: account
         uri: lb://accountservice
         predicates:
-        - Path=/accountservice/opp_by_accts/**
+        - Path=/accountservice/account/{id}
         filters:
         - RewritePath=/accountservice/(?<path>.*), /$\{path}
         - name: Hystrix
           args:
-            name: opportunities_by_accounts_fallback
-            fallbackUri: forward:/accountsfallback
-      - id: contacts
+            name: account_fallback
+            fallbackUri: forward:/servicefallback/{id}
+      - id: contact
         uri: lb://contactservice
         predicates:
-        - Path=/contactservice/**
+        - Path=/contactservice/contact/{id}
         filters:
         - RewritePath=/contactservice/(?<path>.*), /$\{path}
         - name: Hystrix
           args:
-            name: contactsfallback
-            fallbackUri: forward:/accountsfallback
-      - id: opportunities
+            name: contact_fallback
+            fallbackUri: forward:/servicefallback/{id}
+      - id: opportunity
         uri: lb://opportunityservice
         predicates:
-        - Path=/opportunityservice/**
+        - Path=/opportunityservice/opportunity/{id}
         filters:
         - RewritePath=/opportunityservice/(?<path>.*), /$\{path}
         - name: Hystrix
           args:
-            name: opportunitiesfallback
-            fallbackUri: forward:/accountsfallback
+            name: opportunity_fallback
+            fallbackUri: forward:/servicefallback/{id}
 ---
 spring:
   profiles: local
