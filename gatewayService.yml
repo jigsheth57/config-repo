@@ -46,7 +46,7 @@ spring:
       - id: accounts
         uri: lb://accountservice
         predicates:
-        - Path=/accountservice/accounts
+        - Path=/accountservice/accounts/**
         filters:
         - RewritePath=/accountservice/(?<path>.*), /$\{path}
         - name: Hystrix
