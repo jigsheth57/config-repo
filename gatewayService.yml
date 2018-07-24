@@ -53,7 +53,7 @@ spring:
         - name: Hystrix
           args:
             name: accounts_fallback
-            fallbackUri: forward:/accountsfallback
+            fallbackUri: forward:/servicefallback
       - id: opp_by_accts
         uri: lb://accountservice
         predicates:
@@ -63,7 +63,7 @@ spring:
         - name: Hystrix
           args:
             name: opp_by_accts_fallback
-            fallbackUri: forward:/opp_by_acctsfallback
+            fallbackUri: forward:/servicefallback
       - id: account
         uri: lb://accountservice
         predicates:
