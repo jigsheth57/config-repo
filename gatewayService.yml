@@ -22,6 +22,7 @@ logging:
     com.netflix: INFO
     org.springframework.cloud: INFO
     io.pivotal.sfdc: DEBUG
+    org.springframework.cloud.gateway.filter.factory: DEBUG
 
 info:
   component: SFDC Api Gateway
@@ -46,7 +47,7 @@ spring:
       - id: accounts
         uri: lb://accountservice
         predicates:
-        - Path=/accountservice/accounts
+        - Path=/accountservice/accounts/**
         filters:
         - RewritePath=/accountservice/(?<path>.*), /$\{path}
         - name: Hystrix
@@ -56,7 +57,7 @@ spring:
       - id: opp_by_accts
         uri: lb://accountservice
         predicates:
-        - Path=/accountservice/opp_by_accts
+        - Path=/accountservice/opp_by_accts/**
         filters:
         - RewritePath=/accountservice/(?<path>.*), /$\{path}
         - name: Hystrix
