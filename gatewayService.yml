@@ -47,7 +47,7 @@ spring:
       - id: accounts
         uri: lb://accountservice
         predicates:
-        - Path=/accountservice/accounts/**
+        - Path=/accountservice/accounts
         filters:
         - RewritePath=/accountservice/(?<path>.*), /$\{path}
         - name: Hystrix
@@ -57,7 +57,7 @@ spring:
       - id: opp_by_accts
         uri: lb://accountservice
         predicates:
-        - Path=/accountservice/opp_by_accts/**
+        - Path=/accountservice/opp_by_accts
         filters:
         - RewritePath=/accountservice/(?<path>.*), /$\{path}
         - name: Hystrix
@@ -67,33 +67,33 @@ spring:
       - id: account
         uri: lb://accountservice
         predicates:
-        - Path=/accountservice/account/{id}
+        - Path=/accountservice/account/**
         filters:
         - RewritePath=/accountservice/(?<path>.*), /$\{path}
         - name: Hystrix
           args:
             name: account_fallback
-            fallbackUri: forward:/servicefallback/{id}
+            fallbackUri: forward:/servicefallback
       - id: contact
         uri: lb://contactservice
         predicates:
-        - Path=/contactservice/contact/{id}
+        - Path=/contactservice/contact/**
         filters:
         - RewritePath=/contactservice/(?<path>.*), /$\{path}
         - name: Hystrix
           args:
             name: contact_fallback
-            fallbackUri: forward:/servicefallback/{id}
+            fallbackUri: forward:/servicefallback
       - id: opportunity
         uri: lb://opportunityservice
         predicates:
-        - Path=/opportunityservice/opportunity/{id}
+        - Path=/opportunityservice/opportunity/**
         filters:
         - RewritePath=/opportunityservice/(?<path>.*), /$\{path}
         - name: Hystrix
           args:
             name: opportunity_fallback
-            fallbackUri: forward:/servicefallback/{id}
+            fallbackUri: forward:/servicefallback
 ---
 spring:
   profiles: local
