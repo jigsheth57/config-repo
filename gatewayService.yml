@@ -51,7 +51,7 @@ spring:
         - RewritePath=/accountservice/(?<path>.*), /$\{path}
         - name: Hystrix
           args:
-            name: accountsfallback
+            name: contacts_by_accounts_fallback
             fallbackUri: forward:/accountsfallback
       - id: opportunities_by_accounts
         uri: lb://accountservice
@@ -61,7 +61,27 @@ spring:
         - RewritePath=/accountservice/(?<path>.*), /$\{path}
         - name: Hystrix
           args:
-            name: accountsfallback
+            name: opportunities_by_accounts_fallback
+            fallbackUri: forward:/accountsfallback
+      - id: contacts
+        uri: lb://contactservice
+        predicates:
+        - Path=/contactservice/**
+        filters:
+        - RewritePath=/contactservice/(?<path>.*), /$\{path}
+        - name: Hystrix
+          args:
+            name: contactsfallback
+            fallbackUri: forward:/accountsfallback
+      - id: opportunities
+        uri: lb://opportunityservice
+        predicates:
+        - Path=/opportunityservice/**
+        filters:
+        - RewritePath=/opportunityservice/(?<path>.*), /$\{path}
+        - name: Hystrix
+          args:
+            name: opportunitiesfallback
             fallbackUri: forward:/accountsfallback
 ---
 spring:
