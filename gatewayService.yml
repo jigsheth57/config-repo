@@ -110,7 +110,7 @@ spring:
   profiles: cloud # For deployment in Cloud Foundry
   redis:
     host: ${vcap.services.p-redis.credentials.host}
-    port: ${vcap.services.p-redis.credentials.port}
+    port: ${vcap.services.p-redis.credentials.port:6379}
     password: ${vcap.services.p-redis.credentials.password}
   cloud:
     services:
