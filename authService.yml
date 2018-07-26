@@ -1,9 +1,9 @@
 server:
   port: ${PORT:0}
 
-security:
-  basic:
-    enabled: false
+spring:
+  sleuth.sampler.percentage: 1.0
+  zipkin.sender.type: rabbit
 
 management:
   cloudfoundry:
@@ -27,15 +27,6 @@ logging:
     org.springframework.cloud: INFO
     io.pivotal.sfdc: INFO
 
-info:
-  component: Auth Service
-  build:
-    name: ${project.name:authService}
-    description: ${project.description:oauth2 service to login to SFDC}
-    version: ${project.version:0.0.1-SNAPSHOT}
-    group: ${project.groupId:io.pivotal.sfdc}
-    artifact: ${project.artifactId:authService}
-
 sfdc:
   client_id: '{cipher}bf926ee3ed7e60ce8e0920ae8b45011b91eb2737d3c2fe95796ab2fa2afd7b69536a903ddb07ec54b78a5bdf6bc85dbaf8604639926bdbf32e5c755bff18b1c1eabe9ec4b8de5d3463a4384c666a7ce8f212bcf25fe535e40c9e6063044e751c35935e4cf129da1b713c5814ae3e9215'
   client_key: '{cipher}dcdeca12ec0600f7638e3d4b8ad5f70a0a890425e21c2cb6d43fc40f8ae67fe52316d991c71fcf87d77aa698e5d93cee'
@@ -45,8 +36,8 @@ sfdc:
 ---
 spring:
   profiles: local
-  instance:
-    nonSecurePort: ${server.port}
+  # instance:
+  #   nonSecurePort: ${server.port}
   redis:
     host: redis
     port: 6379
@@ -54,7 +45,7 @@ eureka:
   instance:
     preferIpAddress: true
     hostname: authservice
-    nonSecurePort: ${server.port}
+    # nonSecurePort: ${server.port}
   client:
     registerWithEureka: true
     fetchRegistry: true
@@ -66,7 +57,6 @@ producer:
     ServerListRefreshInterval: 5000
 ribbon:
   IsSecure: false
-
 ---
 spring:
   profiles: cloud # For deployment in Cloud Foundry
@@ -79,8 +69,8 @@ producer:
 ribbon:
   IsSecure: false
 
-sfdc:
-  client_id: 3MVG9A2kN3Bn17hv8siDyJtftcr88aXG3TpBJIqO8QZac_dpXPEoQy08vgi651aB8y6QdfgCkW0HsDIyQeH1V
-  client_key: 4631320832041516337
-  uid: jigsheth@sfdc.com
-  pwd: Pivotal1234mpY9LIqi4zImvqRZI8zYP2p3
+# sfdc:
+#   client_id: 3MVG9A2kN3Bn17hv8siDyJtftcr88aXG3TpBJIqO8QZac_dpXPEoQy08vgi651aB8y6QdfgCkW0HsDIyQeH1V
+#   client_key: 4631320832041516337
+#   uid: jigsheth@sfdc.com
+#   pwd: Pivotal1234mpY9LIqi4zImvqRZI8zYP2p3

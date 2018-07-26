@@ -1,9 +1,9 @@
 server:
   port: ${PORT:0}
 
-security:
-  basic:
-    enabled: false
+spring:
+  sleuth.sampler.percentage: 1.0
+  zipkin.sender.type: rabbit
 
 management:
   cloudfoundry:

@@ -1,9 +1,9 @@
 server:
   port: ${PORT:0}
 
-security:
-  basic:
-    enabled: false
+spring:
+  sleuth.sampler.percentage: 1.0
+  zipkin.sender.type: rabbit
 
 management:
   cloudfoundry:
@@ -25,35 +25,22 @@ logging:
   level:
     com.netflix: INFO
     org.springframework.cloud: INFO
-    io.pivotal.sfdc: DEBUG
-
-info:
-  component: Account Service
-  build:
-    name: ${project.name:accountService}
-    description: ${project.description:SFDC Account Service}
-    version: ${project.version:0.0.1-SNAPSHOT}
-    group: ${project.groupId:io.pivotal.sfdc}
-    artifact: ${project.artifactId:accountService}
+    io.pivotal.sfdc: INFO
 
 sfdc:
   service:
     unavailable: '{"status":503,"data": "Service currently unavailable."}'
   authservice:
-    endpoint: http://authservice
+    endpoint: //authservice
   query:
     accounts: select account.id, account.name, account.type, (select contact.id, contact.lastname from account.contacts) from account
     opp_by_accts: select account.id, account.name, account.type, (select opportunity.id, opportunity.name, opportunity.type, opportunity.amount, opportunity.stagename, opportunity.closedate from account.opportunities) from account
     loadsql: select account.id, account.name, account.type, account.description, account.industry, account.ownership, account.website, account.phone, account.NumberOfEmployees, (select contact.id, contact.title, contact.department, contact.email, contact.name, contact.salutation, contact.phone, contact.mobilePhone, contact.firstName, contact.accountId, contact.lastname from account.contacts), (select opportunity.id, opportunity.name, opportunity.type, opportunity.amount, opportunity.stagename, opportunity.closedate, opportunity.description, opportunity.nextStep, opportunity.leadSource, opportunity.accountId from account.opportunities) from account
-
-test:
-  message: Hello, Jig!
-
 ---
 spring:
   profiles: local
-  instance:
-    nonSecurePort: ${server.port}
+  # instance:
+  #   nonSecurePort: ${server.port}
   redis:
     host: redis
     port: 6379
@@ -61,7 +48,7 @@ eureka:
   instance:
     preferIpAddress: true
     hostname: accountservice
-    nonSecurePort: ${server.port}
+    # nonSecurePort: ${server.port}
   client:
     registerWithEureka: true
     fetchRegistry: true
