@@ -51,12 +51,6 @@ producer:
     ServerListRefreshInterval: 5000
 ribbon:
   IsSecure: false
-encrypt:
-  keyStore:
-    location: classpath:/config-server.jks
-    password: my-s70r3-s3cr3t
-    alias: config-server-key
-    secret: my-k34-s3cr3t
 sfdc:
   client_id: '{cipher}AQBQKv2ZP9ATFO27/Y1oSH/1/DlJWm2kWQ01x3oFZ0s72sI9JzzTuTWpEWdfjtpg4SBQQYUNog2Ks/HwaM8bzynNs3Pusgqxu7EbipP9O2jr0mDb+/wR9/6Bo4QFkQYejB+bEIsb1CR+m56aaXsVni3IvNPLPorNKmHtiegMNmiKzrW3ccIN3A4QYrF0GB8iSfhUN9ZEcWn7JTn0BnUB661DlH3NMIlxyn+zWFzPEgOuGPU8kgqv/K2bdKS1/4kyfnFlaiqDbAosqrlZBH9nfVuEl7/zSL0d1ovRNUuHG3F9dT4R+LIHgkfsCZLiDkR0ai4Q4uy884hFLEY/0TiNJZYvCAedjQedfqu6b5MavD3nxrro5nvSdCseFPe3dRJ58pb84VX5MrcrrFc0+JE+VBd5psDc2AeKIrNnGmcFIrL0+Csqro2CjwLi3hpKtP+l1z6QgJR+y3jW4nW7vbaOCE03c0owRObFsAbDzrf7h6WKIw=='
   client_key: '{cipher}AQBfUc/p/Nn1g5U0j55P2ALcOL5BCJJGQNXixdhU99nIpFr6folSyb9rF1i/pnt8fABTtAxh1hnvIN0ohHGlzI1ZrRFiBZKlSkmQ78TI9z8k4mtqw6Xzu27xaKhTGjAV2G7TMRM1FIFDXQJ+b1QvM8SoVTR/rg5y3dVnDM6MP8EQF6HCz5tiJLsHtBFbZY5yhjpmn/bCpU04MyUxCRxh1yexWW6mR1/Bi49DcwHbkXgGhYFzI6bHBHi+CUFFKsI8NXtvlJb/pT3YTQOEZDD/WeZjUoyQRwPgFBWMmdqy8yRvSA9YJuiq49d53Zis6+DAx7evc8LnzYeWxjN6mWVx5R2XSNPm+S579kgQ74+DEHNzI6CqQW9pPji33kjnu6gis9ybiqlB08N9zq3jhMdsRrsy'
