@@ -4,7 +4,7 @@ server:
 spring:
   sleuth.sampler.percentage: 1.0
   zipkin.sender.type: rabbit
-  
+
 management:
   cloudfoundry:
     skip-ssl-validation: true
@@ -38,7 +38,7 @@ info:
 
 sfdc:
   apigateway:
-    endpoint: http://gatewayservice
+    endpoint: //gatewayservice
 #    endpoint: http://sfdcapigateway
   service:
     unavailable: '{"status":503,"data": "Service currently unavailable."}'
