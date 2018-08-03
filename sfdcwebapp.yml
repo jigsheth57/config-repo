@@ -37,8 +37,8 @@ info:
     artifact: ${project.artifactId:sfdcwebapp}
 
 sfdc:
-  apigateway:
-    endpoint: //gatewayservice
+  # apigateway:
+  #   endpoint: //gatewayservice
 #    endpoint: http://sfdcapigateway
   service:
     unavailable: '{"status":503,"data": "Service currently unavailable."}'
