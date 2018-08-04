@@ -39,8 +39,6 @@ info:
 sfdc:
   service:
     unavailable: '{"status":503,"data": "Service currently unavailable."}'
-  # authservice:
-  #   endpoint: //authservice
 
 ---
 spring:

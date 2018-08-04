@@ -39,8 +39,6 @@ info:
 sfdc:
   service:
     unavailable: '{"status":503,"data": "Service currently unavailable."}'
-  # authservice:
-  #   endpoint: //authservice
 
 ---
 spring:
@@ -78,13 +76,3 @@ producer:
     ServerListRefreshInterval: 5000
 ribbon:
   IsSecure: false
-#eureka:
-#  instance:
-#    securePortEnabled: true
-#    nonSecurePortEnabled: false
-#    secureVirtualHostName: ${spring.application.name}
-#    metadataMap:
-#      instanceId: ${vcap.application.instance_id:${spring.application.name}:${spring.application.instance_id:${server.port}}}
-#  client:
-#    serviceUrl:
-#      defaultZone: ${vcap.services.p-service-registry.credentials.uri}/eureka/

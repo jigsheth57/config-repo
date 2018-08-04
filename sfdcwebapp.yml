@@ -37,16 +37,13 @@ info:
     artifact: ${project.artifactId:sfdcwebapp}
 
 sfdc:
-  # apigateway:
-  #   endpoint: //gatewayservice
-#    endpoint: http://sfdcapigateway
   service:
     unavailable: '{"status":503,"data": "Service currently unavailable."}'
 
-hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 60000
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 70000
 ribbon:
-  ConnectTimeout: 3000
-  ReadTimeout: 60000
+  ConnectTimeout: 4000
+  ReadTimeout: 70000
 ---
 spring:
   profiles: local
@@ -76,7 +73,7 @@ spring:
   profiles: cloud # For deployment in Cloud Foundry
   cloud:
     services:
-      registrationMethod: route
+      registrationMethod: direct
 producer:
   ribbon:
     ServerListRefreshInterval: 5000

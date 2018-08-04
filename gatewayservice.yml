@@ -100,6 +100,8 @@ producer:
     ServerListRefreshInterval: 5000
 ribbon:
   IsSecure: false
+  ConnectTimeout: 3000
+  ReadTimeout: 60000
 hystrix:
   command:
     default:

@@ -30,8 +30,6 @@ logging:
 sfdc:
   service:
     unavailable: '{"status":503,"data": "Service currently unavailable."}'
-  # authservice:
-  #   endpoint: //authservice
   query:
     accounts: select account.id, account.name, account.type, (select contact.id, contact.lastname from account.contacts) from account
     opp_by_accts: select account.id, account.name, account.type, (select opportunity.id, opportunity.name, opportunity.type, opportunity.amount, opportunity.stagename, opportunity.closedate from account.opportunities) from account
@@ -39,8 +37,8 @@ sfdc:
 ---
 spring:
   profiles: local
-  # instance:
-  #   nonSecurePort: ${server.port}
+  instance:
+    nonSecurePort: ${server.port}
   redis:
     host: redis
     port: 6379
@@ -48,7 +46,7 @@ eureka:
   instance:
     preferIpAddress: true
     hostname: accountservice
-    # nonSecurePort: ${server.port}
+    nonSecurePort: ${server.port}
   client:
     registerWithEureka: true
     fetchRegistry: true
