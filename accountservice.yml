@@ -64,6 +64,11 @@ spring:
   cloud:
     services:
       registrationMethod: direct
+  redis:
+    host: ${vcap.services.cache-service.credentials.host:redis}
+    port: ${vcap.services.cache-service.credentials.port:6379}
+    password: ${vcap.services.cache-service.credentials.password}
+
 producer:
   ribbon:
     ServerListRefreshInterval: 5000
