@@ -1,0 +1,10 @@
+spring:
+  cloud:
+    skipper:
+      server:
+        enableLocalPlatform: false
+        platform:
+          kubernetes:
+            accounts:
+              minikube:
+                namespace: default
