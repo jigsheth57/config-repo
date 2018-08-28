@@ -11,7 +11,7 @@ logging.level:
   microsec.freddysbbq: DEBUG
   org.springframework:
     cloud:
-      sleuth: DEBUG
+      sleuth: INFO
 ---
 spring:
   profiles: cloud # For deployment in Cloud Foundry
