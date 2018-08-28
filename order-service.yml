@@ -10,13 +10,14 @@ server:
 security:
   basic:
     enabled: false
-ssl:
-  port: 8443
-  keystore:
-    file: classpath:/server.jks
-    pass: ${STORE_PASS:secret}
+# ssl:
+#   port: 8443
+#   keystore:
+#     file: classpath:/server.jks
+#     pass: ${STORE_PASS:secret}
 
 logging.level:
+  microsec.freddysbbq: DEBUG
   org.springframework:
     cloud:
       sleuth: DEBUG
@@ -29,7 +30,7 @@ spring:
       registrationMethod: direct
 eureka:
   instance:
-    securePort: 8443
+    securePort: 61001
     securePortEnabled: true
 
 producer:
