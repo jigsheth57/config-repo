@@ -30,9 +30,9 @@ spring:
       registrationMethod: direct
 eureka:
   instance:
-    securePort: 61001
+    onSecurePortEnabled: false
     securePortEnabled: true
-
+    securePort: 61001
 producer:
   ribbon:
     ServerListRefreshInterval: 5000

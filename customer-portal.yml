@@ -17,7 +17,12 @@ spring:
   profiles: cloud # For deployment in Cloud Foundry
   cloud:
     services:
-      registrationMethod: route
+      registrationMethod: direct
+eureka:
+  instance:
+    onSecurePortEnabled: false
+    securePortEnabled: true
+    securePort: 61001
 producer:
   ribbon:
     ServerListRefreshInterval: 5000
