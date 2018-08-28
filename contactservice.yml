@@ -76,8 +76,14 @@ spring:
     port: ${vcap.services.cache-service.credentials.port:6379}
     password: ${vcap.services.cache-service.credentials.password}
 
+eureka:
+  instance:
+    onSecurePortEnabled: false
+    securePortEnabled: true
+    securePort: 61001
+
 producer:
   ribbon:
     ServerListRefreshInterval: 5000
 ribbon:
-  IsSecure: false
+  IsSecure: true
