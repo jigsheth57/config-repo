@@ -77,10 +77,10 @@ spring:
 eureka:
   instance:
     onSecurePortEnabled: false
-    securePortEnabled: true
-    securePort: 61001
+    securePortEnabled: false
+    securePort: 8080
 producer:
   ribbon:
     ServerListRefreshInterval: 5000
 ribbon:
-  IsSecure: true
+  IsSecure: false

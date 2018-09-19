@@ -68,13 +68,13 @@ spring:
 eureka:
   instance:
     onSecurePortEnabled: false
-    securePortEnabled: true
-    securePort: 61001
+    securePortEnabled: false
+    securePort: 8080
 producer:
   ribbon:
     ServerListRefreshInterval: 5000
 ribbon:
-  IsSecure: true
+  IsSecure: false
 sfdc:
   client_id: '{cipher}5d634a83aa3afa94b3f100263037e6c032a14dd06e9433193b565fcb20c72df7179cf3788b2d2fea06bb02fa66fe16c2e8e68d8154b2519eabc56adfce28b9f6526ac6710fe6c98f3cfd4739e9f3bd4bff396c853ccc8d169a9d7ed4aac490be1fdcce9498c9b9adfce9851101c06821'
   client_key: '{cipher}0a9b68bdc73c21c48814b6848dc9c8feb3021e0d8b9bdaad286fe0ef6a9887d04647fcfccdb2f26012264b58798c4612'
