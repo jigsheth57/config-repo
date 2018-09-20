@@ -113,9 +113,9 @@ hystrix:
 spring:
   profiles: cloud # For deployment in Cloud Foundry
   redis:
-    host: ${vcap.services.cache-service.credentials.host}
-    port: ${vcap.services.cache-service.credentials.port:6379}
-    password: ${vcap.services.cache-service.credentials.password}
+    host: ${vcap.services.rediscloud.credentials.host}
+    port: ${vcap.services.rediscloud.credentials.port:6379}
+    password: ${vcap.services.rediscloud.credentials.password}
   cloud:
     services:
       registrationMethod: direct
