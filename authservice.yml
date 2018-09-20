@@ -62,9 +62,9 @@ spring:
     services:
       registrationMethod: direct
   redis:
-    host: ${vcap.services.rediscloud.credentials.host:redis}
+    host: ${vcap.services.rediscloud.credentials.hostname:redis}
     port: ${vcap.services.rediscloud.credentials.port:6379}
-    password: ${vcap.services.rediscloud.credentials.password}
+    password: ${vcap.services.rediscloud.credentials.password:""}
 eureka:
   instance:
     onSecurePortEnabled: false
