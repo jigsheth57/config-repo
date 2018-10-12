@@ -53,15 +53,20 @@ eureka:
     preferIpAddress: true
     hostname: contactservice
     nonSecurePort: ${server.port}
+    leaseRenewalIntervalInSeconds: 10
+    leaseExpirationDurationInSeconds: 30
   client:
     registerWithEureka: true
     fetchRegistry: true
+    registryFetchIntervalSeconds: 10
+    healthcheck:
+      enabled: true
     serviceUrl:
       defaultZone: http://${EUREKA_HOST:discovery}:8761/eureka/
 # Ribbon Configurations
-producer:
-  ribbon:
-    ServerListRefreshInterval: 5000
+# producer:
+#   ribbon:
+#     ServerListRefreshInterval: 5000
 ribbon:
   IsSecure: false
 
@@ -78,12 +83,22 @@ spring:
 
 eureka:
   instance:
-    onSecurePortEnabled: false
+    nonSecurePortEnabled: true
+    nonSecurePort: 8080
     securePortEnabled: false
-    securePort: 8080
+    securePort: 61001
+    # hostname: ${vcap.application.uris[0]}
+    leaseRenewalIntervalInSeconds: 10
+    leaseExpirationDurationInSeconds: 30
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    registryFetchIntervalSeconds: 10
+    healthcheck:
+      enabled: true
 
-producer:
-  ribbon:
-    ServerListRefreshInterval: 5000
+# producer:
+#   ribbon:
+#     ServerListRefreshInterval: 5000
 ribbon:
   IsSecure: false

@@ -58,9 +58,9 @@ eureka:
     serviceUrl:
       defaultZone: http://${EUREKA_HOST:discovery}:8761/eureka/
 # Ribbon Configurations
-producer:
-  ribbon:
-    ServerListRefreshInterval: 5000
+# producer:
+#   ribbon:
+#     ServerListRefreshInterval: 5000
 ribbon:
   IsSecure: false
 ---

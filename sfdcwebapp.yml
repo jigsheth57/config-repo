@@ -40,10 +40,10 @@ sfdc:
   service:
     unavailable: '{"status":503,"data": "Service currently unavailable."}'
 
-hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 70000
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 60000
 ribbon:
-  ConnectTimeout: 4000
-  ReadTimeout: 70000
+  ConnectTimeout: 3000
+  ReadTimeout: 60000
 ---
 spring:
   profiles: local
@@ -57,15 +57,20 @@ eureka:
     preferIpAddress: true
     hostname: sfdcwebapp
     nonSecurePort: ${server.port}
+    leaseRenewalIntervalInSeconds: 10
+    leaseExpirationDurationInSeconds: 30
   client:
     registerWithEureka: true
     fetchRegistry: true
+    registryFetchIntervalSeconds: 10
+    healthcheck:
+      enabled: true
     serviceUrl:
       defaultZone: http://${EUREKA_HOST:discovery}:8761/eureka/
 # Ribbon Configurations
-producer:
-  ribbon:
-    ServerListRefreshInterval: 5000
+# producer:
+#   ribbon:
+#     ServerListRefreshInterval: 5000
 ribbon:
   IsSecure: false
 ---
@@ -76,11 +81,21 @@ spring:
       registrationMethod: direct
 eureka:
   instance:
-    onSecurePortEnabled: false
+    nonSecurePortEnabled: true
+    nonSecurePort: 8080
     securePortEnabled: false
-    securePort: 8080
-producer:
-  ribbon:
-    ServerListRefreshInterval: 5000
+    securePort: 61001
+    # hostname: ${vcap.application.uris[0]}
+    leaseRenewalIntervalInSeconds: 10
+    leaseExpirationDurationInSeconds: 30
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    registryFetchIntervalSeconds: 10
+    healthcheck:
+      enabled: true
+# producer:
+#   ribbon:
+#     ServerListRefreshInterval: 5000
 ribbon:
   IsSecure: false
