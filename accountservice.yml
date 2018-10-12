@@ -88,8 +88,8 @@ eureka:
     registryFetchIntervalSeconds: 10
     # healthcheck:
     #   enabled: true
-authservice:
-  ribbon:
-    ServerListRefreshInterval: 5000
+# authservice:
+#   ribbon:
+#     ServerListRefreshInterval: 5000
 ribbon:
   IsSecure: false
