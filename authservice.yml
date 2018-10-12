@@ -75,7 +75,7 @@ eureka:
     # nonSecurePortEnabled: false
     # securePortEnabled: false
     # securePort: 8080
-    hostname: ${vcap.application.uris[0]}
+    # hostname: ${vcap.application.uris[0]}
     nonSecurePort: 8080
     leaseRenewalIntervalInSeconds: 10
     leaseExpirationDurationInSeconds: 30
