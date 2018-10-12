@@ -23,14 +23,14 @@ management:
 
 logging:
   level:
-    com.netflix: INFO
-    org.springframework.cloud: INFO
+    com.netflix: ERROR
+    org.springframework.cloud: ERROR
     io.pivotal.sfdc: DEBUG
 ---
 spring:
   profiles: local
-  # instance:
-  #   nonSecurePort: ${server.port}
+  instance:
+    nonSecurePort: ${server.port}
   redis:
     host: redis
     port: 6379
@@ -38,10 +38,15 @@ eureka:
   instance:
     preferIpAddress: true
     hostname: authservice
-    # nonSecurePort: ${server.port}
+    leaseRenewalIntervalInSeconds: 10
+    leaseExpirationDurationInSeconds: 30
+    nonSecurePort: ${server.port}
   client:
     registerWithEureka: true
     fetchRegistry: true
+    registryFetchIntervalSeconds: 10
+    healthcheck:
+      enabled: true
     serviceUrl:
       defaultZone: http://${EUREKA_HOST:discovery}:8761/eureka/
 # Ribbon Configurations
@@ -67,9 +72,20 @@ spring:
     password: ${vcap.services.cache-service.credentials.password}
 eureka:
   instance:
-    onSecurePortEnabled: false
-    securePortEnabled: false
-    securePort: 8080
+    # nonSecurePortEnabled: false
+    # securePortEnabled: false
+    # securePort: 8080
+    hostname: ${vcap.application.uris[0]}
+    nonSecurePort: 8080
+    leaseRenewalIntervalInSeconds: 10
+    leaseExpirationDurationInSeconds: 30
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    registryFetchIntervalSeconds: 10
+    healthcheck:
+      enabled: true
+
 producer:
   ribbon:
     ServerListRefreshInterval: 5000
