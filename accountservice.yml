@@ -75,11 +75,11 @@ spring:
     password: ${vcap.services.cache-service.credentials.password}
 eureka:
   instance:
-    # nonSecurePortEnabled: false
-    # securePortEnabled: false
-    # securePort: 8080
-    # hostname: ${vcap.application.uris[0]}
+    nonSecurePortEnabled: true
     nonSecurePort: 8080
+    securePortEnabled: false
+    securePort: 61001
+    # hostname: ${vcap.application.uris[0]}
     leaseRenewalIntervalInSeconds: 10
     leaseExpirationDurationInSeconds: 30
   client:
