@@ -3,7 +3,7 @@ server:
 
 spring:
   rabbitmq:
-    host: ${vcap.services.p-rabbitmq.credentials.protocols.amqp.host:localhost}
+    host: ${vcap.services.p-rabbitmq.credentials.protocols.amqp.host:RABBITMQ_HOST}
     port: ${vcap.services.p-rabbitmq.credentials.protocols.amqp.port:5672}
     username: ${vcap.services.p-rabbitmq.credentials.protocols.amqp.username:guest}
     password: ${vcap.services.p-rabbitmq.credentials.protocols.amqp.password:guest}
