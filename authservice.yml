@@ -7,7 +7,7 @@ server:
 spring:
   sleuth.sampler.percentage: 1.0
   zipkin.sender.type: rabbit
-      
+
 management:
   cloudfoundry:
     skip-ssl-validation: true
@@ -35,7 +35,7 @@ spring:
   instance:
     nonSecurePort: ${server.port}
   redis:
-    host: redis
+    host: ${REDIS_HOST:redis}
     port: 6379
 eureka:
   instance:
