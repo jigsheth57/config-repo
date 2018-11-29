@@ -1,8 +1,5 @@
 server:
   port: ${PORT:0}
-  session:
-    cookie:
-      secure: true
 
 spring:
   sleuth.sampler.percentage: 1.0
