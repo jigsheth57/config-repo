@@ -14,12 +14,22 @@ management:
       base-path: /manage
       exposure:
         include: '*'
+    env:
+      # Hide properties that end with password and username:
+      keys-to-sanitize: pwd,uid,password,secret,key,client_id,client_key # suffix or regex
+    configprops:
+      # Also hide port and key values from the output:
+      keys-to-sanitize: pwd,uid,password,secret,key,client_id,client_key # suffix or regex
   endpoint:
     health:
       roles: USER
       show-details: always
     env:
       keys-to-sanitize:  pwd,uid,password,secret,key,client_id,client_key # suffix or regex
+# password,secret,key,token,.*credentials.*,vcap_services
+
+
+endpoints:
 
 logging:
   level:
