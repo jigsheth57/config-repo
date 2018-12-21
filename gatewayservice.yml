@@ -19,19 +19,11 @@ management:
 
 logging:
   level:
-    com.netflix: INFO
-    org.springframework.cloud: INFO
+    com.netflix.eureka: OFF
+    com.netflix.discovery: OFF
+    org.springframework.cloud: ERROR
     io.pivotal.sfdc: DEBUG
-    org.springframework.cloud.gateway.filter.factory: DEBUG
-
-info:
-  component: SFDC Api Gateway
-  build:
-    name: ${project.name:gatewayService}
-    description: ${project.description:API Gateway to proxy calls to one or more back end SalesForce.com services}
-    version: ${project.version:0.0.1-SNAPSHOT}
-    group: ${project.groupId:io.pivotal.sfdc}
-    artifact: ${project.artifactId:gatewayService}
+    org.springframework.cloud.gateway.filter.factory: INFO
 
 sfdc:
   service:
@@ -99,10 +91,6 @@ eureka:
       enabled: true
     serviceUrl:
       defaultZone: http://${EUREKA_HOST:discovery}:8761/eureka/
-# Ribbon Configurations
-# producer:
-#   ribbon:
-#     ServerListRefreshInterval: 5000
 ribbon:
   IsSecure: false
   ConnectTimeout: 3000
@@ -130,7 +118,7 @@ eureka:
     nonSecurePort: 8080
     securePortEnabled: false
     securePort: 61001
-    # hostname: ${vcap.application.uris[0]}
+    hostname: ${vcap.application.uris[0]}
     leaseRenewalIntervalInSeconds: 10
     leaseExpirationDurationInSeconds: 30
   client:
@@ -139,9 +127,6 @@ eureka:
     registryFetchIntervalSeconds: 10
     healthcheck:
       enabled: true
-# producer:
-#   ribbon:
-#     ServerListRefreshInterval: 5000
 ribbon:
   IsSecure: false
   ConnectTimeout: 3000

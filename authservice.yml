@@ -23,7 +23,8 @@ management:
 
 logging:
   level:
-    com.netflix: ERROR
+    com.netflix.eureka: OFF
+    com.netflix.discovery: OFF
     org.springframework.cloud: ERROR
     io.pivotal.sfdc: DEBUG
 ---
@@ -76,7 +77,7 @@ eureka:
     nonSecurePort: 8080
     securePortEnabled: false
     securePort: 61001
-    # hostname: ${vcap.application.uris[0]}
+    hostname: ${vcap.application.uris[0]}
     leaseRenewalIntervalInSeconds: 10
     leaseExpirationDurationInSeconds: 30
   client:
@@ -85,9 +86,6 @@ eureka:
     registryFetchIntervalSeconds: 10
     healthcheck:
       enabled: true
-# producer:
-#   ribbon:
-#     ServerListRefreshInterval: 5000
 ribbon:
   IsSecure: false
 sfdc:

@@ -9,15 +9,6 @@ spring:
     password: ${vcap.services.p-rabbitmq.credentials.protocols.amqp.password:guest}
     virtualHost: ${vcap.services.p-rabbitmq.credentials.protocols.amqp.vhost:/}
 
-info:
-  component: Hystrix Dashboard
-  app:
-    name: ${project.name}
-    description: ${project.description}
-    version: ${project.version}
-    group: ${project.groupId}
-    artifact: ${project.artifactId}
-
 management:
   endpoints:
     web:
@@ -25,9 +16,10 @@ management:
 
 logging:
   level:
-    ROOT: INFO
-    io.pivotal.sfdc: INFO
-    org.springframework.web: INFO
+    com.netflix.eureka: OFF
+    com.netflix.discovery: OFF
+    org.springframework.cloud: ERROR
+    io.pivotal.sfdc: DEBUG
 
 endpoints:
   restart:
@@ -51,10 +43,6 @@ eureka:
     fetchRegistry: true
     serviceUrl:
       defaultZone: http://${EUREKA_HOST:discovery}:8761/eureka/
-# Ribbon Configurations
-producer:
-  ribbon:
-    ServerListRefreshInterval: 5000
 ribbon:
   IsSecure: false
 ---
@@ -63,8 +51,5 @@ spring:
   cloud:
     services:
       registrationMethod: direct
-producer:
-  ribbon:
-    ServerListRefreshInterval: 5000
 ribbon:
   IsSecure: false
