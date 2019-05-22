@@ -5,6 +5,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+  main.allow-bean-definition-overriding: true
 server:
   port: ${PORT:0}
 security:
