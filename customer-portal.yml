@@ -20,12 +20,12 @@ spring:
       registrationMethod: direct
 eureka:
   instance:
-    nonSecurePortEnabled: false
+    nonSecurePortEnabled: true
     nonSecurePort: 8080
-    securePortEnabled: true
+    securePortEnabled: false
     securePort: 61001
 producer:
   ribbon:
     ServerListRefreshInterval: 5000
 ribbon:
-  IsSecure: true
+  IsSecure: false
