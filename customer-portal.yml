@@ -17,15 +17,16 @@ spring:
   profiles: cloud # For deployment in Cloud Foundry
   cloud:
     services:
-      registrationMethod: direct
-eureka:
-  instance:
-    nonSecurePortEnabled: true
-    nonSecurePort: 8080
-    securePortEnabled: false
-    securePort: 61001
+      registrationMethod: route
+      # registrationMethod: direct
+# eureka:
+#   instance:
+#     nonSecurePortEnabled: false
+#     nonSecurePort: 8080
+#     securePortEnabled: true
+#     securePort: 61001
 producer:
   ribbon:
     ServerListRefreshInterval: 5000
 ribbon:
-  IsSecure: false
+  IsSecure: true
