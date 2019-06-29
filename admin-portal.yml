@@ -7,11 +7,26 @@ server:
 security:
   basic:
     enabled: false
-logging.level:
-  microsec.freddysbbq: INFO
-  org.springframework:
-    cloud:
-      sleuth: INFO
+
+management:
+  cloudfoundry:
+    enabled: true
+  endpoints:
+    web:
+      base-path: /manage
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      roles: admin
+      show-details: always
+
+logging:
+  level:
+    com.netflix.eureka: OFF
+    com.netflix.discovery: OFF
+    org.springframework.cloud: ERROR
+    microsec.freddysbbq: DEBUG
 ---
 spring:
   profiles: cloud # For deployment in Cloud Foundry

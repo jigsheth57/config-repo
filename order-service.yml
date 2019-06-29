@@ -16,11 +16,25 @@ security:
 #     file: classpath:/server.jks
 #     pass: ${STORE_PASS:secret}
 
-logging.level:
-  microsec.freddysbbq: INFO
-  org.springframework:
-    cloud:
-      sleuth: INFO
+management:
+  cloudfoundry:
+    enabled: true
+  endpoints:
+    web:
+      base-path: /manage
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      roles: admin
+      show-details: always
+
+logging:
+  level:
+    com.netflix.eureka: OFF
+    com.netflix.discovery: OFF
+    org.springframework.cloud: ERROR
+    microsec.freddysbbq: DEBUG
 
 ---
 spring:
