@@ -17,7 +17,7 @@ security:
 #     pass: ${STORE_PASS:secret}
 
 logging.level:
-  microsec.freddysbbq: INFO
+  microsec.freddysbbq: DEBUG
   org.springframework:
     cloud:
       sleuth: INFO
