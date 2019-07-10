@@ -3,6 +3,7 @@ server:
 
 spring:
   sleuth.sampler.percentage: 1.0
+  sleuth.sampler.probability: 1.0  
   zipkin.sender.type: rabbit
 
 management:
