@@ -20,10 +20,10 @@ management:
       roles: USER
       show-details: always
     configprops:
-      keys-to-sanitize:  password # suffix or regex
-      # keys-to-sanitize:  pwd,uid,password,secret,key,client_id,client_key # suffix or regex
+      # keys-to-sanitize:  password # suffix or regex
+      keys-to-sanitize:  pwd,uid,password,secret,key,client_id,client_key # suffix or regex
     env:
-      keys-to-sanitize:  password # suffix or regex
+      keys-to-sanitize:  password,secret,key,token,.*credentials.*,vcap_services # suffix or regex
 # password,secret,key,token,.*credentials.*,vcap_services
 
 
@@ -34,7 +34,7 @@ logging:
     com.netflix.eureka: OFF
     com.netflix.discovery: OFF
     org.springframework.cloud: ERROR
-    io.pivotal.sfdc: DEBUG
+    io.pivotal.sfdc: INFO
 ---
 spring:
   profiles: local
