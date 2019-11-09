@@ -80,6 +80,7 @@ spring:
     port: ${vcap.services.cache-service.credentials.port:6379}
     password: ${vcap.services.cache-service.credentials.password}
   rabbitmq:
+    addresses: ${vcap.services.event-bus.credentials.uri}
     host: ${vcap.services.event-bus.credentials.hostname}
     port: 5671
     virtual-host: ${vcap.services.event-bus.credentials.vhost}
