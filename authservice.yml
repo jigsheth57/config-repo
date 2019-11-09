@@ -79,6 +79,15 @@ spring:
     host: ${vcap.services.cache-service.credentials.host:redis}
     port: ${vcap.services.cache-service.credentials.port:6379}
     password: ${vcap.services.cache-service.credentials.password}
+  rabbitmq:
+    host: ${vcap.services.event-bus.credentials.hostname}
+    port: 5671
+    virtual-host: ${vcap.services.event-bus.credentials.vhost}
+    username: ${vcap.services.event-bus.credentials.username}
+    password: ${vcap.services.event-bus.credentials.password}
+    ssl.enabled: ${vcap.services.event-bus.credentials.ssl}
+    ssl.algorithm: TLSv1.2
+
 eureka:
   instance:
     nonSecurePortEnabled: true
