@@ -37,7 +37,8 @@ logging:
     com.netflix.eureka: OFF
     com.netflix.discovery: OFF
     org.springframework.cloud: ERROR
-    io.pivotal.sfdc: INFO
+    io.pivotal.sfdc: DEBUG
+    com.force.api: DEBUG
 ---
 spring:
   profiles: local
