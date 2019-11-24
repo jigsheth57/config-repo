@@ -7,7 +7,8 @@ spring:
   zipkin.sender.type: rabbit
   rabbitmq.listener.direct.retry.enabled: true
   rabbitmq.listener.simple.retry.enabled: true
-  cloud.stream.bindings.accountProcessor.destination: datasync.soap.notifications.accounts
+  cloud.stream.bindings.accountProcessor.destination: datasync.soap.notifications
+  cloud.stream.bindings.accountProcessor.group: accounts
   cloud.stream.bindings.accountUpdater.destination: datasync.account.notifications
   cloud.stream.bindings.accountUpdater.producer.requiredGroups: accounts
   cloud.stream.rabbit.binder.connection-name-prefix: accountprocessor
