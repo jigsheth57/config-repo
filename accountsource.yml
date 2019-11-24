@@ -7,6 +7,8 @@ spring:
   zipkin.sender.type: rabbit
   rabbitmq.listener.direct.retry.enabled: true
   rabbitmq.listener.simple.retry.enabled: true
+  cloud.stream.bindings.accountNotification.destination: datasync.soap.account.notifications
+  cloud.stream.default.contentType: application/json
 
 management:
   cloudfoundry:
