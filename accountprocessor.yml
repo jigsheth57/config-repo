@@ -1,0 +1,93 @@
+server:
+  port: ${PORT:0}
+
+spring:
+  sleuth.sampler.percentage: 1.0
+  sleuth.sampler.probability: 1.0
+  zipkin.sender.type: rabbit
+  rabbitmq.listener.direct.retry.enabled: true
+  rabbitmq.listener.simple.retry.enabled: true
+  cloud.stream.bindings.accountProcessor.destination: datasync.soap.notifications.accounts
+  cloud.stream.bindings.accountUpdater.destination: datasync.account.notifications
+  cloud.stream.bindings.accountUpdater.producer.requiredGroups: accounts
+  cloud.stream.rabbit.binder.connection-name-prefix: accountprocessor
+  cloud.stream.default.contentType: application/json
+
+management:
+  cloudfoundry:
+    skip-ssl-validation: true
+    enabled: true
+  endpoints:
+    web:
+      base-path: /manage
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      roles: USER
+      show-details: always
+    configprops:
+      # keys-to-sanitize:  password # suffix or regex
+      keys-to-sanitize: "password,secret"
+      # pwd,uid,password,secret,key,client_id,client_key # suffix or regex
+    env:
+      keys-to-sanitize: "password,secret"
+      # password,secret,key,token,.*credentials.*,vcap_services # suffix or regex
+# password,secret,key,token,.*credentials.*,vcap_services
+
+logging:
+  level:
+    com.netflix.eureka: OFF
+    com.netflix.discovery: OFF
+    org.springframework.cloud: ERROR
+    io.pivotal.sfdc: DEBUG
+
+---
+spring:
+  profiles: local
+  instance:
+    nonSecurePort: ${server.port}
+eureka:
+  instance:
+    preferIpAddress: true
+    hostname: accountsource
+    nonSecurePort: ${server.port}
+    leaseRenewalIntervalInSeconds: 10
+    leaseExpirationDurationInSeconds: 30
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    registryFetchIntervalSeconds: 10
+    healthcheck:
+      enabled: true
+    serviceUrl:
+      defaultZone: http://${EUREKA_HOST:discovery}:8761/eureka/
+ribbon:
+  IsSecure: false
+---
+spring:
+  profiles: cloud # For deployment in Cloud Foundry
+  cloud:
+    services:
+      registrationMethod: direct
+  rabbitmq:
+    addresses: ${vcap.services.event-bus.credentials.uri}
+    ssl.enabled: ${vcap.services.event-bus.credentials.ssl}
+    ssl.algorithm: TLSv1.2
+eureka:
+  instance:
+    nonSecurePortEnabled: true
+    nonSecurePort: 8080
+    securePortEnabled: true
+    securePort: 61001
+    hostname: ${vcap.application.uris[0]}
+    leaseRenewalIntervalInSeconds: 10
+    leaseExpirationDurationInSeconds: 30
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    registryFetchIntervalSeconds: 10
+    healthcheck:
+      enabled: true
+ribbon:
+  IsSecure: true
