@@ -13,10 +13,14 @@ spring:
     destination: datasync.account.notifications
     group: accounts
   cloud.stream:
-    rabbit.binder.connection-name-prefix: accountsink
     default.contentType: application/json
     instanceIndex: ${INSTANCE_INDEX:0}
-    
+    rabbit:
+      binder.connection-name-prefix: ${spring.application.name}
+      bindings.accountSink.consumer:
+        prefetch: 5
+        consumer-tag-prefix: ${spring.application.name}-${spring.cloud.stream.bindings.accountSink.group}-${spring.cloud.stream.instanceIndex}
+
 management:
   cloudfoundry:
     skip-ssl-validation: true

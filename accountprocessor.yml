@@ -12,13 +12,18 @@ spring:
   cloud.stream.bindings.accountProcessor:
     destination: datasync.soap.notifications
     group: accounts
+    consumer.max-attempts: 3
   cloud.stream.bindings.accountUpdater:
     destination: datasync.account.notifications
     producer.requiredGroups: accounts
   cloud.stream:
-    rabbit.binder.connection-name-prefix: accountprocessor
     default.contentType: application/json
     instanceIndex: ${INSTANCE_INDEX:0}
+    rabbit:
+      binder.connection-name-prefix: ${spring.application.name}
+      bindings.accountProcessor.consumer:
+        prefetch: 5
+        consumer-tag-prefix: ${spring.application.name}-${spring.cloud.stream.bindings.accountProcessor.group}-${spring.cloud.stream.instanceIndex}
 
 management:
   cloudfoundry:
