@@ -2,16 +2,21 @@ server:
   port: ${PORT:0}
 
 spring:
-  sleuth.sampler.percentage: 1.0
-  sleuth.sampler.probability: 1.0
+  sleuth.sampler:
+    percentage: 1.0
+    probability: 1.0
   zipkin.sender.type: rabbit
-  rabbitmq.listener.direct.retry.enabled: true
-  rabbitmq.listener.simple.retry.enabled: true
-  cloud.stream.bindings.accountSink.destination: datasync.account.notifications
-  cloud.stream.bindings.accountSink.group: accounts
-  cloud.stream.rabbit.binder.connection-name-prefix: accountsink
-  cloud.stream.default.contentType: application/json
-
+  rabbitmq.listener:
+    direct.retry.enabled: true
+    simple.retry.enabled: true
+  cloud.stream.bindings.accountSink:
+    destination: datasync.account.notifications
+    group: accounts
+  cloud.stream:
+    rabbit.binder.connection-name-prefix: accountsink
+    default.contentType: application/json
+    instanceIndex: ${INSTANCE_INDEX:0}
+    
 management:
   cloudfoundry:
     skip-ssl-validation: true
