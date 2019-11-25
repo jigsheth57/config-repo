@@ -45,8 +45,8 @@ management:
 
 logging:
   level:
-    com.netflix.eureka: OFF
-    com.netflix.discovery: OFF
+    com.netflix.eureka: ERROR
+    com.netflix.discovery: ERROR
     org.springframework.cloud: ERROR
     io.pivotal.sfdc: DEBUG
 

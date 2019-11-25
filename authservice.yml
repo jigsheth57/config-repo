@@ -34,10 +34,10 @@ endpoints:
 
 logging:
   level:
-    com.netflix.eureka: OFF
-    com.netflix.discovery: OFF
+    com.netflix.eureka: ERROR
+    com.netflix.discovery: ERROR
     org.springframework.cloud: ERROR
-    io.pivotal.sfdc: INFO
+    io.pivotal.sfdc: DEBUG
     com.force.api: DEBUG
 ---
 spring:
