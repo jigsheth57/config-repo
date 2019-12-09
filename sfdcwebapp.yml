@@ -2,8 +2,13 @@ server:
   port: ${PORT:0}
 
 spring:
-  sleuth.sampler.percentage: 1.0
+  # sleuth.sampler.percentage: 1.0
+  sleuth.sampler.rate: 100
+  sleuth.sampler.probability: 1.0
   zipkin.sender.type: rabbit
+  zipkin.compression.enabled: true
+  rabbitmq.listener.direct.retry.enabled: true
+  rabbitmq.listener.simple.retry.enabled: true
 
 management:
   cloudfoundry:

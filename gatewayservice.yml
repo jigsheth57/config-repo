@@ -36,12 +36,14 @@ sfdc:
     unavailable: '{"status":503,"data": "Service currently unavailable."}'
 
 spring:
-  main.allow-bean-definition-overriding: true
-  sleuth.sampler.percentage: 1.0
+  # sleuth.sampler.percentage: 1.0
+  sleuth.sampler.rate: 100
   sleuth.sampler.probability: 1.0
   zipkin.sender.type: rabbit
+  zipkin.compression.enabled: true
   rabbitmq.listener.direct.retry.enabled: true
   rabbitmq.listener.simple.retry.enabled: true
+  main.allow-bean-definition-overriding: true
   cloud:
     gateway:
       discovery:
