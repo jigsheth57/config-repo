@@ -76,7 +76,7 @@ eureka:
   instance:
     nonSecurePortEnabled: true
     nonSecurePort: 8080
-    securePortEnabled: false
+    securePortEnabled: true
     securePort: 61001
     hostname: ${vcap.application.uris[0]}
     leaseRenewalIntervalInSeconds: 10
@@ -88,4 +88,4 @@ eureka:
     healthcheck:
       enabled: true
 ribbon:
-  IsSecure: false
+  IsSecure: true
