@@ -108,6 +108,9 @@ eureka:
       enabled: true
 ribbon:
   IsSecure: true
-management.metrics.export.wavefront:
-  uri: proxy://${vcap.services.wf-proxy.credentials.hostname}:${vcap.services.wf-proxy.credentials.port}
-  step: 15s
+management.metrics:
+  enable.all: true
+  export.wavefront:
+    enabled: true
+    uri: proxy://${vcap.services.wf-proxy.credentials.hostname}:${vcap.services.wf-proxy.credentials.port}
+    step: 15s
