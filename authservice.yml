@@ -119,14 +119,14 @@ eureka:
 ribbon:
   IsSecure: true
 # sfdc:
-# CLIENT_ID: '{cipher}5d634a83aa3afa94b3f100263037e6c032a14dd06e9433193b565fcb20c72df7179cf3788b2d2fea06bb02fa66fe16c2e8e68d8154b2519eabc56adfce28b9f6526ac6710fe6c98f3cfd4739e9f3bd4bff396c853ccc8d169a9d7ed4aac490be1fdcce9498c9b9adfce9851101c06821'
-# CLIENT_SECRET: '{cipher}0a9b68bdc73c21c48814b6848dc9c8feb3021e0d8b9bdaad286fe0ef6a9887d04647fcfccdb2f26012264b58798c4612'
-# USERNAME: '{cipher}b9894e593ccf582c2400e3f1947035aef643f9cdb6000602897f4e4463019b62c291f13818d471e0bb116a8581abbe45'
-# PASSWORD: '{cipher}1e31b869a9da8df05eaa42ae760dea8b6dcf365c104b38c8594efe233f040bc972ddbf60a253048fb09c8175068e23e421683d2494a939f8a60f5dc22bf6b392'
-CLIENT_ID: ${vcap.services.sfdcauth2.credentials.CLIENT_ID:test}
-CLIENT_SECRET: ${vcap.services.sfdcauth2.credentials.CLIENT_SECRET:test}
-USERNAME: ${vcap.services.sfdcauth2.credentials.USERNAME:test}
-PASSWORD: ${vcap.services.sfdcauth2.credentials.PASSWORD:test}
+CLIENT_ID: '{cipher}5d634a83aa3afa94b3f100263037e6c032a14dd06e9433193b565fcb20c72df7179cf3788b2d2fea06bb02fa66fe16c2e8e68d8154b2519eabc56adfce28b9f6526ac6710fe6c98f3cfd4739e9f3bd4bff396c853ccc8d169a9d7ed4aac490be1fdcce9498c9b9adfce9851101c06821'
+CLIENT_SECRET: '{cipher}0a9b68bdc73c21c48814b6848dc9c8feb3021e0d8b9bdaad286fe0ef6a9887d04647fcfccdb2f26012264b58798c4612'
+USERNAME: '{cipher}b9894e593ccf582c2400e3f1947035aef643f9cdb6000602897f4e4463019b62c291f13818d471e0bb116a8581abbe45'
+PASSWORD: '{cipher}1e31b869a9da8df05eaa42ae760dea8b6dcf365c104b38c8594efe233f040bc972ddbf60a253048fb09c8175068e23e421683d2494a939f8a60f5dc22bf6b392'
+# CLIENT_ID: ${vcap.services.sfdcauth2.credentials.CLIENT_ID:test}
+# CLIENT_SECRET: ${vcap.services.sfdcauth2.credentials.CLIENT_SECRET:test}
+# USERNAME: ${vcap.services.sfdcauth2.credentials.USERNAME:test}
+# PASSWORD: ${vcap.services.sfdcauth2.credentials.PASSWORD:test}
 
 
 # sfdc:
