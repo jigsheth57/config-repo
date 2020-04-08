@@ -31,6 +31,9 @@ management:
       keys-to-sanitize: "password,secret"
       # password,secret,key,token,.*credentials.*,vcap_services # suffix or regex
 # password,secret,key,token,.*credentials.*,vcap_services
+  metrics:
+    enable: true
+    web.server.request.autotime.enabled: true
 
 logging:
   level:
