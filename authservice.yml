@@ -123,6 +123,12 @@ ribbon:
 # CLIENT_SECRET: '{cipher}0a9b68bdc73c21c48814b6848dc9c8feb3021e0d8b9bdaad286fe0ef6a9887d04647fcfccdb2f26012264b58798c4612'
 # USERNAME: '{cipher}b9894e593ccf582c2400e3f1947035aef643f9cdb6000602897f4e4463019b62c291f13818d471e0bb116a8581abbe45'
 # PASSWORD: '{cipher}1e31b869a9da8df05eaa42ae760dea8b6dcf365c104b38c8594efe233f040bc972ddbf60a253048fb09c8175068e23e421683d2494a939f8a60f5dc22bf6b392'
+CLIENT_ID: ${vcap.services.sfdcauth2.credentials.CLIENT_ID:test}
+CLIENT_SECRET: ${vcap.services.sfdcauth2.credentials.CLIENT_SECRET:test}
+USERNAME: ${vcap.services.sfdcauth2.credentials.USERNAME:test}
+PASSWORD: ${vcap.services.sfdcauth2.credentials.PASSWORD:test}
+
+
 # sfdc:
 #   client_id: 3MVG9A2kN3Bn17hv8siDyJtftcr88aXG3TpBJIqO8QZac_dpXPEoQy08vgi651aB8y6QdfgCkW0HsDIyQeH1V
 #   client_key: 4631320832041516337
