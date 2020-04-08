@@ -128,3 +128,9 @@ PASSWORD: '{cipher}1e31b869a9da8df05eaa42ae760dea8b6dcf365c104b38c8594efe233f040
 #   client_key: 4631320832041516337
 #   uid: jigsheth@sfdc.com
 #   pwd: Pivotal1234mpY9LIqi4zImvqRZI8zYP2p3
+management.metrics:
+  enable.all: true
+  export.wavefront:
+    enabled: true
+    uri: proxy://${vcap.services.wf-proxy.credentials.hostname}:${vcap.services.wf-proxy.credentials.port}
+    step: 15s

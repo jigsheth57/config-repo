@@ -159,3 +159,9 @@ hystrix:
         isolation:
           thread:
             timeoutInMilliseconds: 60000
+management.metrics:
+  enable.all: true
+  export.wavefront:
+    enabled: true
+    uri: proxy://${vcap.services.wf-proxy.credentials.hostname}:${vcap.services.wf-proxy.credentials.port}
+    step: 15s
