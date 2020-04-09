@@ -1,15 +1,6 @@
 server:
   port: ${PORT:0}
 
-spring:
-  # sleuth.sampler.percentage: 1.0
-  sleuth.sampler.rate: 100
-  sleuth.sampler.probability: 1.0
-  zipkin.sender.type: rabbit
-  zipkin.compression.enabled: true
-  rabbitmq.listener.direct.retry.enabled: true
-  rabbitmq.listener.simple.retry.enabled: true
-
 management:
   cloudfoundry:
     skip-ssl-validation: true
@@ -54,6 +45,13 @@ spring:
   redis:
     host: ${REDIS_HOST:redis}
     port: 6379
+  sleuth.sampler.rate: 100
+  sleuth.sampler.probability: 1.0
+  zipkin.sender.type: rabbit
+  zipkin.compression.enabled: true
+  rabbitmq.listener.direct.retry.enabled: true
+  rabbitmq.listener.simple.retry.enabled: true
+
 eureka:
   instance:
     preferIpAddress: true
@@ -90,6 +88,15 @@ spring:
     # password: ${vcap.services.event-bus.credentials.password}
     ssl.enabled: ${vcap.services.event-bus.credentials.ssl}
     ssl.algorithm: TLSv1.2
+  sleuth.sampler.rate: 100
+  sleuth.sampler.probability: 1.0
+  zipkin.compression.enabled: true
+  zipkin.baseUrl: https://${vcap.services.wf-proxy.credentials.hostname}:9411
+  zipkin.sender.type: web
+  # zipkin.sender.type: rabbit
+  # rabbitmq.listener.direct.retry.enabled: true
+  # rabbitmq.listener.simple.retry.enabled: true
+
 eureka:
   instance:
     nonSecurePortEnabled: true

@@ -2,13 +2,6 @@ server:
   port: ${PORT:0}
 
 spring:
-  # sleuth.sampler.percentage: 1.0
-  sleuth.sampler.rate: 100
-  sleuth.sampler.probability: 1.0
-  zipkin.sender.type: rabbit
-  zipkin.compression.enabled: true
-  rabbitmq.listener.direct.retry.enabled: true
-  rabbitmq.listener.simple.retry.enabled: true
   cloud.stream.bindings.accountProcessor:
     destination: datasync.soap.notifications
     group: accounts
@@ -59,6 +52,12 @@ spring:
   profiles: local
   instance:
     nonSecurePort: ${server.port}
+  sleuth.sampler.rate: 100
+  sleuth.sampler.probability: 1.0
+  zipkin.sender.type: rabbit
+  zipkin.compression.enabled: true
+  rabbitmq.listener.direct.retry.enabled: true
+  rabbitmq.listener.simple.retry.enabled: true
 eureka:
   instance:
     preferIpAddress: true
@@ -86,6 +85,14 @@ spring:
     addresses: ${vcap.services.event-bus.credentials.uri}
     ssl.enabled: ${vcap.services.event-bus.credentials.ssl}
     ssl.algorithm: TLSv1.2
+  sleuth.sampler.rate: 100
+  sleuth.sampler.probability: 1.0
+  zipkin.compression.enabled: true
+  zipkin.baseUrl: https://${vcap.services.wf-proxy.credentials.hostname}:9411
+  zipkin.sender.type: web
+  # zipkin.sender.type: rabbit
+  # rabbitmq.listener.direct.retry.enabled: true
+  # rabbitmq.listener.simple.retry.enabled: true
 eureka:
   instance:
     nonSecurePortEnabled: true
