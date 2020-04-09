@@ -31,7 +31,6 @@ management:
       keys-to-sanitize: "password,secret"
       # password,secret,key,token,.*credentials.*,vcap_services # suffix or regex
 # password,secret,key,token,.*credentials.*,vcap_services
-  metrics.web.server.request.autotime.enabled: true
 
 logging:
   level:
@@ -111,6 +110,8 @@ ribbon:
 management.metrics:
   enable.all: true
   export.wavefront:
+    source: accountservice
     enabled: true
     uri: proxy://${vcap.services.wf-proxy.credentials.hostname}:${vcap.services.wf-proxy.credentials.port}
-    step: 15s
+    step: 10s
+  web.server.request.autotime.enabled: true

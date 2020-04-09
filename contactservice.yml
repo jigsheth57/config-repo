@@ -109,6 +109,8 @@ ribbon:
 management.metrics:
   enable.all: true
   export.wavefront:
+    source: contactservice
     enabled: true
     uri: proxy://${vcap.services.wf-proxy.credentials.hostname}:${vcap.services.wf-proxy.credentials.port}
-    step: 15s
+    step: 10s
+  web.server.request.autotime.enabled: true
