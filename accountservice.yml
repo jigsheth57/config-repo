@@ -69,6 +69,16 @@ eureka:
       defaultZone: http://${EUREKA_HOST:discovery}:8761/eureka/
 ribbon:
   IsSecure: false
+
+management.metrics:
+  enable.all: true
+  export.wavefront:
+    source: accountservice
+    enabled: true
+    uri: proxy://wavefront-proxy.wavefront.svc.cluster.local:2878
+    step: 10s
+  web.server.request.autotime.enabled: true
+
 ---
 spring:
   profiles: cloud # For deployment in Cloud Foundry

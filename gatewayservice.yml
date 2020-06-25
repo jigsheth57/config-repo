@@ -113,6 +113,16 @@ hystrix:
         isolation:
           thread:
             timeoutInMilliseconds: 60000
+
+management.metrics:
+  enable.all: true
+  export.wavefront:
+    source: gatewayservice
+    enabled: true
+    uri: proxy://wavefront-proxy.wavefront.svc.cluster.local:2878
+    step: 10s
+  web.server.request.autotime.enabled: true
+
 ---
 spring:
   profiles: cloud # For deployment in Cloud Foundry
@@ -140,7 +150,7 @@ spring:
   # zipkin.sender.type: rabbit
   # rabbitmq.listener.direct.retry.enabled: true
   # rabbitmq.listener.simple.retry.enabled: true
-      
+
 eureka:
   instance:
     nonSecurePortEnabled: true
