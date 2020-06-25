@@ -47,10 +47,12 @@ spring:
     port: 6379
   sleuth.sampler.rate: 100
   sleuth.sampler.probability: 1.0
-  zipkin.sender.type: rabbit
   zipkin.compression.enabled: true
-  rabbitmq.listener.direct.retry.enabled: true
-  rabbitmq.listener.simple.retry.enabled: true
+  zipkin.baseUrl: https://wavefront-proxy.wavefront.svc.cluster.local:9411
+  zipkin.sender.type: web
+  # zipkin.sender.type: rabbit
+  # rabbitmq.listener.direct.retry.enabled: true
+  # rabbitmq.listener.simple.retry.enabled: true
 
 eureka:
   instance:
