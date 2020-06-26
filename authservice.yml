@@ -2,9 +2,6 @@ server:
   port: ${PORT:0}
 
 management:
-  cloudfoundry:
-    skip-ssl-validation: true
-    enabled: true
   endpoints:
     web:
       base-path: /manage
@@ -15,21 +12,12 @@ management:
       roles: USER
       show-details: always
     configprops:
-      # keys-to-sanitize:  password # suffix or regex
-      keys-to-sanitize: "password,secret"
-      # pwd,uid,password,secret,key,client_id,client_key # suffix or regex
+      keys-to-sanitize: "pwd,uid,password,secret,key,client_id,client_key"  # suffix or regex
     env:
-      keys-to-sanitize: "password,secret"
-      # password,secret,key,token,.*credentials.*,vcap_services # suffix or regex
-# password,secret,key,token,.*credentials.*,vcap_services
-
-
-endpoints:
+      keys-to-sanitize: "pwd,uid,password,secret,key,client_id,client_key"  # suffix or regex
 
 logging:
   level:
-    com.netflix.eureka: ERROR
-    com.netflix.discovery: ERROR
     org.springframework.cloud: ERROR
     io.pivotal.sfdc: DEBUG
     com.force.api: DEBUG
@@ -46,25 +34,7 @@ spring:
   zipkin.compression.enabled: true
   zipkin.baseUrl: http://wavefront-proxy.wavefront.svc.cluster.local:9411
   zipkin.sender.type: web
-  # zipkin.sender.type: rabbit
-  # rabbitmq.listener.direct.retry.enabled: true
-  # rabbitmq.listener.simple.retry.enabled: true
 
-eureka:
-  instance:
-    preferIpAddress: true
-    hostname: authservice
-    leaseRenewalIntervalInSeconds: 10
-    leaseExpirationDurationInSeconds: 30
-    nonSecurePort: ${server.port}
-  client:
-    registerWithEureka: true
-    fetchRegistry: true
-    registryFetchIntervalSeconds: 10
-    healthcheck:
-      enabled: true
-    serviceUrl:
-      defaultZone: http://${EUREKA_HOST:discovery}:8761/eureka/
 # Ribbon Configurations
 producer:
   ribbon:
@@ -89,75 +59,5 @@ management.metrics:
     source: authservice
     enabled: true
     uri: proxy://wavefront-proxy.wavefront.svc.cluster.local:2878
-    step: 10s
-  web.server.request.autotime.enabled: true
-
----
-spring:
-  profiles: cloud # For deployment in Cloud Foundry
-  cloud:
-    services:
-      registrationMethod: direct
-  redis:
-    host: ${vcap.services.cache-service.credentials.host:redis}
-    port: ${vcap.services.cache-service.credentials.port:6379}
-    password: ${vcap.services.cache-service.credentials.password}
-  rabbitmq:
-    addresses: ${vcap.services.event-bus.credentials.uri}
-    # host: ${vcap.services.event-bus.credentials.hostname}
-    # port: ${vcap.services.event-bus.credentials.port}
-    # virtual-host: ${vcap.services.event-bus.credentials.vhost}
-    # username: ${vcap.services.event-bus.credentials.username}
-    # password: ${vcap.services.event-bus.credentials.password}
-    ssl.enabled: ${vcap.services.event-bus.credentials.ssl}
-    ssl.algorithm: TLSv1.2
-  sleuth.sampler.rate: 100
-  sleuth.sampler.probability: 1.0
-  zipkin.compression.enabled: true
-  zipkin.baseUrl: https://${vcap.services.wf-proxy.credentials.hostname}:9411
-  zipkin.sender.type: web
-  # zipkin.sender.type: rabbit
-  # rabbitmq.listener.direct.retry.enabled: true
-  # rabbitmq.listener.simple.retry.enabled: true
-
-eureka:
-  instance:
-    nonSecurePortEnabled: true
-    nonSecurePort: 8080
-    securePortEnabled: true
-    securePort: 61001
-    hostname: ${vcap.application.uris[0]}
-    leaseRenewalIntervalInSeconds: 10
-    leaseExpirationDurationInSeconds: 30
-  client:
-    registerWithEureka: true
-    fetchRegistry: true
-    registryFetchIntervalSeconds: 10
-    healthcheck:
-      enabled: true
-ribbon:
-  IsSecure: true
-# sfdc:
-CLIENT_ID: '{cipher}5d634a83aa3afa94b3f100263037e6c032a14dd06e9433193b565fcb20c72df7179cf3788b2d2fea06bb02fa66fe16c2e8e68d8154b2519eabc56adfce28b9f6526ac6710fe6c98f3cfd4739e9f3bd4bff396c853ccc8d169a9d7ed4aac490be1fdcce9498c9b9adfce9851101c06821'
-CLIENT_SECRET: '{cipher}0a9b68bdc73c21c48814b6848dc9c8feb3021e0d8b9bdaad286fe0ef6a9887d04647fcfccdb2f26012264b58798c4612'
-USERNAME: '{cipher}b9894e593ccf582c2400e3f1947035aef643f9cdb6000602897f4e4463019b62c291f13818d471e0bb116a8581abbe45'
-PASSWORD: '{cipher}1e31b869a9da8df05eaa42ae760dea8b6dcf365c104b38c8594efe233f040bc972ddbf60a253048fb09c8175068e23e421683d2494a939f8a60f5dc22bf6b392'
-# CLIENT_ID: ${vcap.services.sfdcauth2.credentials.CLIENT_ID:test}
-# CLIENT_SECRET: ${vcap.services.sfdcauth2.credentials.CLIENT_SECRET:test}
-# USERNAME: ${vcap.services.sfdcauth2.credentials.USERNAME:test}
-# PASSWORD: ${vcap.services.sfdcauth2.credentials.PASSWORD:test}
-
-
-# sfdc:
-#   client_id: 3MVG9A2kN3Bn17hv8siDyJtftcr88aXG3TpBJIqO8QZac_dpXPEoQy08vgi651aB8y6QdfgCkW0HsDIyQeH1V
-#   client_key: 4631320832041516337
-#   uid: jigsheth@sfdc.com
-#   pwd: Pivotal1234mpY9LIqi4zImvqRZI8zYP2p3
-management.metrics:
-  enable.all: true
-  export.wavefront:
-    source: authservice
-    enabled: true
-    uri: proxy://${vcap.services.wf-proxy.credentials.hostname}:${vcap.services.wf-proxy.credentials.port}
     step: 10s
   web.server.request.autotime.enabled: true
