@@ -57,9 +57,6 @@ management:
       step: 10s
     web.server.request.autotime.enabled: true
 
-ribbon:
-  IsSecure: false
-
 resilience4j.circuitbreaker:
     configs:
         default:

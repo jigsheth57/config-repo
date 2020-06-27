@@ -46,10 +46,6 @@ management.metrics:
     step: 10s
   web.server.request.autotime.enabled: true
 
-# Ribbon Configurations
-ribbon:
-  IsSecure: false
-
 # sfdc:
 CLIENT_ID: 3MVG9A2kN3Bn17hv8siDyJtftcr88aXG3TpBJIqO8QZac_dpXPEoQy08vgi651aB8y6QdfgCkW0HsDIyQeH1V
 CLIENT_SECRET: 4631320832041516337
