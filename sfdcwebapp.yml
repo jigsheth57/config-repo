@@ -2,9 +2,6 @@ server:
   port: ${PORT:0}
 
 management:
-  cloudfoundry:
-    skip-ssl-validation: true
-    enabled: true
   endpoints:
     web:
       base-path: /manage
@@ -14,24 +11,21 @@ management:
     health:
       roles: USER
       show-details: always
+    configprops:
+      keys-to-sanitize: "pwd,uid,password,secret,key,client_id,client_key"  # suffix or regex
     env:
-      keys-to-sanitize:  pwd,uid,password,secret,key,client_id,client_key # suffix or regex
+      keys-to-sanitize: "pwd,uid,password,secret,key,client_id,client_key"  # suffix or regex
 
 logging:
   level:
-    com.netflix.eureka: ERROR
-    com.netflix.discovery: ERROR
     org.springframework.cloud: ERROR
     io.pivotal.sfdc: DEBUG
+    com.force.api: DEBUG
 
 sfdc:
   service:
     unavailable: '{"status":503,"data": "Service currently unavailable."}'
 
-hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 60000
-ribbon:
-  ConnectTimeout: 3000
-  ReadTimeout: 60000
 ---
 spring:
   profiles: local
@@ -45,73 +39,44 @@ spring:
   zipkin.compression.enabled: true
   zipkin.baseUrl: http://wavefront-proxy.wavefront.svc.cluster.local:9411
   zipkin.sender.type: web
-  # zipkin.sender.type: rabbit
-  # rabbitmq.listener.direct.retry.enabled: true
-  # rabbitmq.listener.simple.retry.enabled: true
 
-eureka:
-  instance:
-    preferIpAddress: true
-    hostname: sfdcwebapp
-    nonSecurePort: ${server.port}
-    leaseRenewalIntervalInSeconds: 10
-    leaseExpirationDurationInSeconds: 30
-  client:
-    registerWithEureka: true
-    fetchRegistry: true
-    registryFetchIntervalSeconds: 10
-    healthcheck:
+management:
+  health.circuitbreakers.enabled: true
+  metrics:
+    tags.application: ${spring.application.name}
+    distribution.percentiles-histogram.http.server.requests: true
+    distribution.percentiles-histogram.resilience4j.circuitbreaker.calls: true
+    enable.all: true
+    export.wavefront:
+      source: portalservice
       enabled: true
-    serviceUrl:
-      defaultZone: http://${EUREKA_HOST:discovery}:8761/eureka/
-ribbon:
-  IsSecure: false
+      uri: proxy://wavefront-proxy.wavefront.svc.cluster.local:2878
+      step: 10s
+    web.server.request.autotime.enabled: true
 
-management.metrics:
-  enable.all: true
-  export.wavefront:
-    source: portalservice
-    enabled: true
-    uri: proxy://wavefront-proxy.wavefront.svc.cluster.local:2878
-    step: 10s
-  web.server.request.autotime.enabled: true
-
----
-spring:
-  profiles: cloud # For deployment in Cloud Foundry
-  cloud:
-    services:
-      registrationMethod: direct
-  sleuth.sampler.rate: 100
-  sleuth.sampler.probability: 1.0
-  zipkin.compression.enabled: true
-  zipkin.baseUrl: https://${vcap.services.wf-proxy.credentials.hostname}:9411
-  zipkin.sender.type: web
-  # zipkin.sender.type: rabbit
-  # rabbitmq.listener.direct.retry.enabled: true
-  # rabbitmq.listener.simple.retry.enabled: true
-eureka:
-  instance:
-    nonSecurePortEnabled: true
-    nonSecurePort: 8080
-    securePortEnabled: true
-    securePort: 61001
-    hostname: ${vcap.application.uris[0]}
-    leaseRenewalIntervalInSeconds: 10
-    leaseExpirationDurationInSeconds: 30
-  client:
-    registerWithEureka: true
-    fetchRegistry: true
-    registryFetchIntervalSeconds: 10
-    healthcheck:
-      enabled: true
-ribbon:
-  IsSecure: true
-management.metrics:
-  enable.all: true
-  export.wavefront:
-    source: portalservice
-    enabled: true
-    uri: proxy://${vcap.services.wf-proxy.credentials.hostname}:${vcap.services.wf-proxy.credentials.port}
-    step: 10s
-  web.server.request.autotime.enabled: true
+resilience4j.circuitbreaker:
+    configs:
+        default:
+            registerHealthIndicator: true
+            slidingWindowSize: 10
+            minimumNumberOfCalls: 5
+            permittedNumberOfCallsInHalfOpenState: 3
+            automaticTransitionFromOpenToHalfOpenEnabled: true
+            waitDurationInOpenState: 5s
+            failureRateThreshold: 50
+            eventConsumerBufferSize: 10
+            recordExceptions:
+                - org.springframework.web.client.HttpServerErrorException
+                - java.util.concurrent.TimeoutException
+                - java.io.IOException
+            ignoreExceptions:
+        shared:
+            slidingWindowSize: 100
+            permittedNumberOfCallsInHalfOpenState: 30
+            waitDurationInOpenState: 1s
+            failureRateThreshold: 50
+            eventConsumerBufferSize: 10
+            ignoreExceptions:
+    instances:
+        cacheBackend:
+            baseConfig: default
