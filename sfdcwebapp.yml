@@ -19,7 +19,7 @@ management:
 logging:
   level:
     org.springframework.cloud: ERROR
-    io.pivotal.sfdc: DEBUG
+    io.pivotal.sfdc: ERROR
     com.force.api: DEBUG
 
 sfdc:
